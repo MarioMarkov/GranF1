@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import image from './ressources/max.png';
+//import image from './ressources/max.png';
+import image from './ressources/black.png';
 import './Homepage.css';
 import Navbar from './navigation/Navbar';
 import { Link } from "react-router-dom";
@@ -16,13 +17,13 @@ function Homepage() {
             <img className='article-img' src={image } alt="" />
           </div>
           <div className='title'>
-            Гран При на Зандвоорт 2022 асдасд асдсад
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa, eum?
           </div>
         </div>
         </Link>
       <div id="posts">
             <div id="post1" className="post">
-          <div class="post-card">
+          <div className="post-card">
               <img className='article-img' src={image} alt='' />
                 <div className='card-text'>
                   <h3><a >A Super Wonderful Headline</a></h3>
@@ -32,7 +33,7 @@ function Homepage() {
               </div>
             </div>
             <div id="post2" className="post">
-              <div class="post-card">
+              <div className="post-card">
                 <img  className='article-img' src={image} alt=''/>
                 <div className='card-text'>
                   <h3><a >A Super Wonderful Headline</a></h3>
@@ -41,7 +42,7 @@ function Homepage() {
               </div>
             </div>
             <div id="post3" className="post">
-              <div class="post-card">
+              <div className="post-card">
                 <img className='article-img'  src={image} alt=''/>
                 <div className='card-text'>
                   <h3><a >A Super Wonderful Headline</a></h3>

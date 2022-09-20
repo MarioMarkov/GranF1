@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Navbar() {
     return (
 
-    <div class="navbar">
+    <div className="navbar">
         <div className='logo'>
                 Gran F1
         </div>

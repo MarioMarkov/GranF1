@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import Article from './Article';
 import About from './About';
-import Stories from './Stories';
+import Stories from './stories/Stories';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
