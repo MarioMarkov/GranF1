@@ -4,6 +4,10 @@
     grid-gap: 30px;
     padding: 10px;
   }
-  .grid-item {
-    text-align: center;
-  }
+.grid-item {
+  text-align: center;
+}
+
+.article-item{
+  border:1px solid blue;
+}
