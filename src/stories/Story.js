@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom';
 import Article from '../Article';
 
 function Story(props) {
-    const id = useParams()
-    console.log(id)
+    const params = useParams()
+    console.log(params)
     return (
         <div>
-            {id.articleId}
+            {params.articleId}
         </div>
     );
 }

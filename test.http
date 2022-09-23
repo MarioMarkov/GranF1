@@ -1,0 +1,10 @@
+curl http://localhost:5000/api/stories \
+    -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"title":"Post 1", "content":"Lorem ipsum"}'
+{
+    "_v": 0,
+    "_id": "",
+    "title": "Post 1",
+    "content": "Lorem ipsum"
+}
