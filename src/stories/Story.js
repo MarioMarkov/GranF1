@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useState,useEffect} from 'react';
 import { useParams } from 'react-router-dom';
-import Article from '../Article';
 
 function Story(props) {
+
     const params = useParams()
-    console.log(params)
+    const [article, setArticle] = useState({});
+    console.log(params.articleId)
+    useEffect(() => {
+        fetch("/api/stories/".concat(params.articleId))
+            .then(resp => resp.json())
+            .then(data => setArticle(data))
+    }, []) 
+
     return (
         <div>
-            {params.articleId}
+            Title: { article.title}
         </div>
     );
 }

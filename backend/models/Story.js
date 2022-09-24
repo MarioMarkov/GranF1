@@ -2,10 +2,12 @@ const mongoose = require('mongoose')
 
 const storySchema = mongoose.Schema({
     title:{
-        type:String
+        type: String,
+        required: true
     },
     content:{
-        type:String,
+        type: String,
+        required: true
     }
 })
 

@@ -7,7 +7,6 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Article from './Article';
 import About from './About';
 import Stories from './stories/Stories';
 import Story from './stories/Story';
@@ -19,7 +18,7 @@ root.render(
       <Route path="/" element={<App />} />
       <Route path="stories" element={<Stories />} />
       <Route path="about" element={<About />} />
-      <Route path="story/:articleId" element={<Story />} />
+      <Route path="stories/:articleId" element={<Story />} />
 
     </Routes>
   </BrowserRouter>

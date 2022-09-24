@@ -7,8 +7,15 @@ import Story from './Story';
 import image from '../ressources/black.png';
 import './Stories.css';
 function Stories() {
-    
 
+   
+    
+    useEffect(() => {
+        fetch("/api/stories")
+            .then(resp => resp.json())
+            .then(data => setArticles(data))
+    }, [])  
+    
     const [articles, setArticles] = useState([]);
 
     const addArticle = (article) => { 
@@ -23,10 +30,10 @@ function Stories() {
              <div className='grid-container'>
                 {articles.map((article) => {
                     return (
-                        <div className='grid-item article-item' key={article.id}>
-                            <Link to={`/story/:${article.id}`}>
+                        <div className='grid-item article-item' key={article._id}>
+                            <Link to={`/stories/${article._id}`}>
                                 <div>Title : {article.title}</div>
-                                <div>Contents: { article.contents}</div>
+                                <div>Content: { article.content}</div>
                             </Link>
                         </div>
                     );
