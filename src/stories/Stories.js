@@ -1,6 +1,6 @@
 import React ,{ useState ,useEffect} from 'react';
 import PropTypes from 'prop-types';
-import { Link } from "react-router-dom";
+import { Link, useAsyncError } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 import AddStory from './AddStory';
 import Story from './Story';
@@ -18,9 +18,20 @@ function Stories() {
     
     const [articles, setArticles] = useState([]);
 
-    const addArticle = (article) => { 
+    const addArticle =  async (article) => { 
         let newArticle = [...articles, article]
-        setArticles(newArticle);
+        console.log(JSON.stringify(article))
+        const response = await fetch('/api/stories', {
+            method: 'POST', 
+            mode: 'cors',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(article) 
+        });
+        
+        
+        setArticles(newArticle);    
     }
     
 

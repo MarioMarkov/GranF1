@@ -16,12 +16,14 @@ router.get('/stories', async (req,res)=>{
     res.send(stories)
 })
 
-// @route /api/stories
+// @action post
+// @route /api/stories 
 router.post("/stories", async (req, res) => {
     const story = new Story({
 		title: req.body.title,  
 		content: req.body.content,
 	})
+	console.log(story)
 	await story.save()
 	res.send(story)
 })

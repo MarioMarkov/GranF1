@@ -2,11 +2,11 @@ import React from 'react';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 function AddStory({ addArticle }) {
-    const [state, setState] = useState({ title: '', contents: '' });
+    const [state, setState] = useState({ title: '', content: '' });
     
     const handleSubmit = (e) => { 
         e.preventDefault()
-        addArticle({id: uuidv4(),title:state.title,contents: state.contents})
+        addArticle({title:state.title,content: state.content})
     }
     
     return (
@@ -21,7 +21,7 @@ function AddStory({ addArticle }) {
                 <label>
                     Content:
                     <input onChange={e =>   setState({ ...state, [e.target.name]: e.target.value })}
-                        value={state.contents} type="text" name="contents" />
+                        value={state.content} type="text" name="content" />
                 </label>
                 <input type="submit" value="Submit" />
             </form>
