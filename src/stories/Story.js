@@ -1,11 +1,10 @@
 import React, { useState,useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 
-function Story(props) {
+function Story() {
 
     const params = useParams()
     const [article, setArticle] = useState({});
-    console.log(params.articleId)
     useEffect(() => {
         fetch("/api/stories/".concat(params.articleId))
             .then(resp => resp.json())

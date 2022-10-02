@@ -1,16 +1,26 @@
 import React from 'react';
 import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import './AddStory.css';
+import { Buffer } from "buffer";
 function AddStory({ addArticle }) {
     const [state, setState] = useState({ title: '', content: '' });
     
     const handleSubmit = (e) => { 
         e.preventDefault()
-        addArticle({title:state.title,content: state.content})
+        addArticle({title:state.title,content: state.content,image:file})
     }
+
+    const [file, setFile] = useState();
     
+    function handleChange(e) {
+        let file = URL.createObjectURL(e.target.files[0]);
+        const buffer = Buffer.from(file)
+        setFile(buffer);
+    }
+  
+   
     return (
-        <div>
+        <div className='story-form'>
             AddStory: 
             <form onSubmit={ e => handleSubmit(e)}>
                 <label>
@@ -22,6 +32,12 @@ function AddStory({ addArticle }) {
                     Content:
                     <input onChange={e =>   setState({ ...state, [e.target.name]: e.target.value })}
                         value={state.content} type="text" name="content" />
+                </label>
+                <label>
+                    Image:
+                    <input type="file" onChange={handleChange} />
+                    {/* <img src={file} width='100px' height='100px' /> */}
+
                 </label>
                 <input type="submit" value="Submit" />
             </form>
