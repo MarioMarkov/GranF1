@@ -5,15 +5,18 @@ function Story() {
 
     const params = useParams()
     const [article, setArticle] = useState({});
+   
     useEffect(() => {
         fetch("/api/stories/".concat(params.articleId))
             .then(resp => resp.json())
-            .then(data => setArticle(data))
+            .then(data => { 
+                setArticle(data)
+            })
     }, []) 
 
     return (
         <div>
-            Title: { article.title}
+            Title: {article.title}    
         </div>
     );
 }

@@ -1,18 +1,25 @@
 const express = require('express');
 const Story = require('../models/Story');
-const Img = require('../models/Image');
+const imageModel = require('../models/Image');
 const router = express.Router();
-
-const multer = require('multer');
-const storage = multer.diskStorage({
-    destination: function (req, res, cb) {
-        cb(null, 'uploads/')
-    }
-});
-const upload = multer({ storage: storage });
-
-
 const fs = require('fs');
+const multer = require('multer')
+
+
+// Configure multer
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'uploads')
+    },
+  
+    filename: (req, file, cb)=>{
+      cb(null, file.originalname)
+    }
+  
+  })
+  
+const upload = multer({storage:storage})
+
 
 // @route /api
 router.get('/',(req,res)=>{
@@ -32,8 +39,8 @@ router.post("/stories", async (req, res) => {
 
     const story = new Story({
 		title: req.body.title,  
-        content: req.body.content,
-        image:req.body.image
+    content: req.body.content,
+    image:req.body.image
 	})
 	console.log(story)
 	await story.save()
@@ -48,23 +55,37 @@ router.get("/stories/:id", async (req, res) => {
 	res.send(story)
 })
 
-router.route('/img_data')
-.post(upload.single('file'), function(req, res) {
-    var new_img = new Img();
-    new_img.img.data = fs.readFileSync(req.file.path)
-    new_img.img.contentType = 'image/jpeg';
-    new_img.save();
-    res.json({ message: 'New image added to the db!' });
+
+
+// Post an image
+router.post('/img_data', upload.single('testImage'), function (req, res) {
+    console.log(req.file.filename)
+    const saveImage = new imageModel({
+        name: req.body.name,
+        img: {
+            data: fs.readFileSync("uploads/" + req.file.filename),
+            contentType: "image/png"
+        }
+    })
+    saveImage
+    .save()
+    .then((res) => {
+      console.log("image is saved");
+    })
+    .catch((err) => {
+      console.log(err, "error has occur");
+    });
+    res.send('image is saved')
 })
-.get(function (req, res) {
-    Img.findOne({}, 'img createdAt', function(err, img) {
-        if (err)
-            res.send(err);
-        // console.log(img);
-        res.contentType('json');
-        res.send(img);
-    }).sort({ createdAt: 'desc' });
-});
+
+
+// Get Images
+router.get('/img_data',async (req,res)=>{
+  const allData = await imageModel.find()
+  res.json(allData)
+})
+
+
 
 module.exports = router;
 

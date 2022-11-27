@@ -10,6 +10,7 @@ import {
 import About from './About';
 import Stories from './stories/Stories';
 import Story from './stories/Story';
+import Images from './stories/Images';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ root.render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="stories" element={<Stories />} />
+      <Route path="images" element={<Images />} />
       <Route path="about" element={<About />} />
       <Route path="stories/:articleId" element={<Story />} />
 
