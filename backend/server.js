@@ -19,8 +19,10 @@ mongoose.connect('mongodb+srv://mario123:m112001@my-blog.cn5yytl.mongodb.net/?re
 const db = mongoose.connection;
 
 db.on('error', (err) => console.error(err));
-db.on('open', () => console.log('Connected to Mongoose'));
+db.on('open', () => console.log('Connected to Mongoose'))
 
 app.use('/api', routes);
+app.use(express.static(__dirname + '/public'));
+app.use('/uploads', express.static('uploads'));
 
 app.listen(5000);

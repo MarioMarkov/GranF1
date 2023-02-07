@@ -8,23 +8,18 @@ import {
   Route,
 } from "react-router-dom";
 import About from './About';
-import Stories from './stories/Stories';
-import Story from './stories/Story';
-import Images from './stories/Images';
+import Article from './articles/Article';
+import Articles from './articles/Articles';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="stories" element={<Stories />} />
-      <Route path="images" element={<Images />} />
+      <Route path="articles" element={<Articles />} />
       <Route path="about" element={<About />} />
-      <Route path="stories/:articleId" element={<Story />} />
-
+      <Route path="articles/:articleId" element={<Article />} />
     </Routes>
   </BrowserRouter>
-  </React.StrictMode>
 );
 
 

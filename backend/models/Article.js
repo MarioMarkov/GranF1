@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const storySchema = mongoose.Schema({
+const articleSchema = mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -9,11 +9,11 @@ const storySchema = mongoose.Schema({
         type: String,
         required: true
     },
-    image: {
-        data: Buffer,
-        contentType: String
+    image_name: {
+        type: String,
+        required: true
     }
 
 })
 
-module.exports = mongoose.model('Story',storySchema)
+module.exports = mongoose.model('Article',articleSchema)

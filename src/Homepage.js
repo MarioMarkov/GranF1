@@ -1,9 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 //import image from './ressources/max.png';
 import image from './ressources/black.png';
 import './Homepage.css';
-import Navbar from './navigation/Navbar';
 import { Link } from "react-router-dom";
 
 
@@ -11,7 +9,7 @@ function Homepage() {
     return (
       
       <div>
-        <Link to ='/stories'>
+        <Link to ='/articles'>
         <div className='showcase'>
           <div className='picture'>
             <img className='article-img' src={image } alt="" />

@@ -1,23 +1,20 @@
 import React from 'react';
-import { useState ,useEffect} from 'react';
-import './AddStory.css';
-function AddStory({ addArticle }) {
+import { useState, useEffect } from 'react';
+
+import './AddArticle.css';
+function AddArticle({ addArticle }) {
        
     const [state, setState] = useState({ title: '', content: '' });
     const [image, setImage] = useState(null)
 
-    function onChange(e){ 
-        setImage([e.target.files[0]])
-    }
-
     const handleSubmit = (e) => { 
         e.preventDefault()
-        addArticle({title:state.title,content: state.content,image:image})
+        addArticle({title:state.title,content: state.content,image:image, image_name:image.name})
     }
    
     return (
         <div className='story-form'>
-            AddStory: 
+            Add Article: 
             <form onSubmit={ e => handleSubmit(e)}>
                 <label>
                     Title:
@@ -31,7 +28,13 @@ function AddStory({ addArticle }) {
                 </label>
                 <label>
                     Image
-                    <input onChange={onChange} type="file" id="img" name="img" accept="image/*"/>
+                    <input
+                        type="file"
+                        name="image"
+                        onChange={(event) => {
+                            setImage(event.target.files[0]);
+                        }}
+                    />
                     
                 </label>
                 <input type="submit" value="Submit" />
@@ -40,4 +43,4 @@ function AddStory({ addArticle }) {
     );
 }
 
-export default AddStory;
+export default AddArticle;
