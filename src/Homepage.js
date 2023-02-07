@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 function Homepage() {
     return (
       
-      <div>
+      <div class= "main-content">
         <Link to ='/articles'>
         <div className='showcase'>
           <div className='picture'>

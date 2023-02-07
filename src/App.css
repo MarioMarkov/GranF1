@@ -1,14 +1,15 @@
-.App{
-  width: 80%;
-  margin: auto;
-  
-}
+
 
 body{
-    background-color: #fffffe;
+  background-color: #fffffe;
+
+  color: #2b2c34;
+  font-family: proxima-nova, sans-serif;
 }
 a{
   text-decoration: none;
+  color: #2b2c34;
+  font-family: proxima-nova, sans-serif;
 }
 
 
