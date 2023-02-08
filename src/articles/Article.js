@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState,useEffect} from 'react';
 import { useParams } from 'react-router-dom';
+import './Article.css'
 
 function Article() {
 
@@ -64,10 +65,17 @@ function Article() {
     
    
     return (
-        <div>
-            Title : {article.title}   <br />
-            Content : {article.content}    <br />
-            Image:  {!(image instanceof Object) ?  <img alt=''  src={image} width="300" />: null }
+        <div className='article-content'>
+            <div className = "article-title">
+                 {article.title}
+            </div>
+            <div className='article-image'>
+
+            </div>
+                {!(image instanceof Object) ? <img alt='' src={image} width="300" /> : null}
+            <div className='article-content'>
+                {article.content}  
+            </div>
             
             
         </div>
