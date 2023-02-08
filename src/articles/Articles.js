@@ -46,7 +46,7 @@ function Articles() {
             <AddArticle addArticle={addArticle}></AddArticle>
              <div className='grid-container'>
                 {articles.map((article) => {
-                    {console.log(article._id)}
+                   
                     return (
                         
                         <div className='grid-item article-item' key={article._id}>

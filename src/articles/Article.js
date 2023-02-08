@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState,useEffect} from 'react';
+import React, { useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import './Article.css'
 import ReactMarkdown from 'react-markdown'
@@ -17,7 +17,6 @@ function Article() {
             await fetch(`/api/articles/${params.articleId}/image`)
             .then(response => response.blob())
             .then(imageBlob => {
-                 console.log(imageBlob)
                 // Then create a local URL for that image and print it 
                 const imageObjectURL = URL.createObjectURL(imageBlob);
                 setImage(imageObjectURL)
