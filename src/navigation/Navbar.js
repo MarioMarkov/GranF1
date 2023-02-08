@@ -9,16 +9,21 @@ function Navbar() {
                 Gran F1
         </div>
         <div className='navbar-links'>
-                <a href="">Home </a>
-                <a href="">Race Reviews</a>
+                <Link to="/">Home</Link> 
+                <Link to="/articles">Race Reviews</Link> 
                 <Link to="/articles">F1 Stories</Link> 
                 <Link to="/about">About</Link> 
 
         </div>
             
             <div className='navbar-search'>
-                <a href="">Search</a>
-        </div>
+                <div className="search-container">
+                        <form action="/action_page.php">
+                        <input type="text" placeholder="Search.." name="search"/>
+                        <button type="submit"><i className="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
     </div>
     );
 }

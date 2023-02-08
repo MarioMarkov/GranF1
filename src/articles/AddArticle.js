@@ -23,10 +23,11 @@ function AddArticle({ addArticle }) {
                 </label>
                 <label>
                     Content:
-                    <input onChange={e =>   setState({ ...state, [e.target.name]: e.target.value })}
+                    <textarea onChange={e =>   setState({ ...state, [e.target.name]: e.target.value })}
                         value={state.content} type="text" name="content" />
                 </label>
                 <label>
+                    
                     Image
                     <input
                         type="file"
