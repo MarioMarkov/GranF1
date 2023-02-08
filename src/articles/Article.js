@@ -77,8 +77,8 @@ function Article() {
             </div>
                 {!(image instanceof Object) ? <img alt='' src={image} width="300" /> : null}
             <div className='article-content'>
-                 
-                <ReactMarkdown>{article.content} </ReactMarkdown>
+            
+                {article.content && <ReactMarkdown >{article.content}</ReactMarkdown> } 
 
             </div>
             

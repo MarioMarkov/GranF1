@@ -16,12 +16,16 @@
 }
 .navbar-links{
     display:  inline;   
+    margin-left: 3rem;
 }
 
 .navbar-links a{
     color: #2b2c34;
     padding: 10px;
+    
 }
+
+/* Search box css */
 
 .navbar-search{
     color: #2b2c34;
