@@ -9,6 +9,7 @@ import {
 import About from './About';
 import Article from './articles/Article';
 import Articles from './articles/Articles';
+import EditArticle from './articles/EditArticle';
 function App() {
   return (
     <div className="App">
@@ -20,6 +21,8 @@ function App() {
       <Route path="articles" element={<Articles />} />
       <Route path="about" element={<About />} />
       <Route path="articles/:articleId" element={<Article />} />
+      <Route path="articles/edit/:articleId" element={<EditArticle />} />
+
     </Routes>
   </BrowserRouter>
     </div>

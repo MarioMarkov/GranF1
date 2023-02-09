@@ -24,9 +24,8 @@
     flex-flow:row wrap;
   }
   
-  #post1{width:30%;min-width:400px;min-height:350px;flex-grow:1;}
-  #post2{width:30%;min-width:400px;min-height:350px;flex-grow:1;}
-  #post3{width:30%;min-width:400px;min-height:350px;flex-grow:1;}
+
+
   
   .card-text{
     padding: 5px;
@@ -34,6 +33,7 @@
   
   .post{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);transition: 0.3s;
+    width:30%;min-width:400px;min-height:350px;flex-grow:1;
   }
   .post:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);

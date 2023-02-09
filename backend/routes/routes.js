@@ -33,15 +33,14 @@ router.get('/articles', async (req,res)=>{
 })
 
 // @action post
-// @route /api/stories 
+// @route /api/articles 
 router.post("/articles", upload.single("image"), async (req, res) => {
-
+    console.log(req.body)
     const article = new Article({
       title: req.body.title,  
       content: req.body.content,
       image_name:req.body.image_name
     })
-  console.log(article)
 	await article.save()
 	res.send(article)
 })
@@ -61,11 +60,24 @@ router.get('/articles/:id/image', async (req, res) => {
   res.sendFile('./public/images/' + article.image_name, { root: root });
 });
 
-router.get('/articles/images', async (req, res) => {
 
-  root = resolve() 
-  res.sendFile('/public/images' + article.image_name, { root: root });
-});
+// @route /api/articles/edit/:id
+router.post("/articles/edit/:id", async (req, res) => {
+  const article = await Article.findById(req.params.id)
+  article.title =  req.body.title,  
+  article.content = req.body.content,
+  article.image_name= req.body.image_name
+
+  await article.save()
+  res.send(article)
+})
+
+
+// @route /api/articles/edit/:id
+router.delete("/articles/delete/:id", async (req, res) => {
+  let article = await Article.deleteOne({_id: req.params.id})
+  res.send(article)
+})
 
 
 // // Post an image

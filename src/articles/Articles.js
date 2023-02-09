@@ -24,7 +24,7 @@ function Articles() {
         let articles_new = [...articles, article]
 
         try {
-            const response = await axios.post("/api/articles", article, {
+            await axios.post("/api/articles", article, {
             mode: 'cors',
               headers: {
                 "Content-Type": "multipart/form-data"
@@ -51,9 +51,7 @@ function Articles() {
                         
                         <div className='grid-item article-item' key={article._id}>
                             <Link to={`/articles/${article._id}`} key={article._id}>
-                                <div>Title : {article.title}</div>
-                                <div>Content: {article.content}</div>
-                               
+                                <div>Title : {article.title}</div>                               
                             </Link>
                         </div>
                     );

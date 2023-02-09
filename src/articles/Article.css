@@ -14,3 +14,11 @@
     font-size: 30px;
     line-height: 1.35;
 }
+
+.edit-article-btn{
+    float: right;
+}
+
+.delete-article-btn{
+    float: right;
+}

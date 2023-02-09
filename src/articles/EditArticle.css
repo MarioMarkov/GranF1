@@ -1,0 +1,10 @@
+.edit-content{
+    margin: auto;
+    width: 80%;
+    text-align: center;
+}
+
+textarea {
+    width: 300px;
+    height: 150px;
+  }

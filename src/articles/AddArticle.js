@@ -1,8 +1,11 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import './AddArticle.css';
 function AddArticle({ addArticle }) {
+
+    // Image markdown tag ![alt text for screen readers](link "Text to show on mouseover").
+
        
     const [state, setState] = useState({ title: '', content: '' });
     const [image, setImage] = useState(null)
