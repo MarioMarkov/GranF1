@@ -9,7 +9,7 @@ const {resolve} = require('path');
 //Configure multer
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, './uploads')
+      cb(null, './public')
     },
   
     filename: (req, file, cb)=>{
@@ -41,7 +41,7 @@ router.post("/articles", upload.single("image"), async (req, res) => {
       content: req.body.content,
       image_name:req.body.image_name
     })
-  
+  console.log(article)
 	await article.save()
 	res.send(article)
 })
@@ -49,16 +49,24 @@ router.post("/articles", upload.single("image"), async (req, res) => {
 // @route /api/stories/:id
 router.get("/articles/:id", async (req, res) => {
   const article = await Article.findById(req.params.id)
-  console.log(article)
 
 	res.send(article)
 })
 
+// @route /api/articles/:id/image
 router.get('/articles/:id/image', async (req, res) => {
   const article = await Article.findById(req.params.id)
   root = resolve() 
-  res.sendFile('/uploads/' + article.image_name, { root: root });
+
+  res.sendFile('./public/images/' + article.image_name, { root: root });
 });
+
+router.get('/articles/images', async (req, res) => {
+
+  root = resolve() 
+  res.sendFile('/public/images' + article.image_name, { root: root });
+});
+
 
 // // Post an image
 // router.post('/img_data', upload.single('testImage'), function (req, res) {

@@ -20,6 +20,7 @@ function Article() {
                 // Then create a local URL for that image and print it 
                 const imageObjectURL = URL.createObjectURL(imageBlob);
                 setImage(imageObjectURL)
+                console.log(imageObjectURL)
             })
         }
 

@@ -22,7 +22,8 @@ db.on('error', (err) => console.error(err));
 db.on('open', () => console.log('Connected to Mongoose'))
 
 app.use('/api', routes);
-app.use(express.static(__dirname + '/public'));
-app.use('/uploads', express.static('uploads'));
+//app.use(express.static('public'))
+
+app.use('/public/images', express.static('images'));
 
 app.listen(5000);
