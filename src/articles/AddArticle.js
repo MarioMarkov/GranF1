@@ -2,19 +2,21 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import './AddArticle.css';
+import { useNavigate } from "react-router-dom";
 
 
 function AddArticle() {
 
     // Image markdown tag ![alt text htmlFor screen readers](link "Text to show on mouseover").
 
-       
+    const navigate = useNavigate();
     const [state, setState] = useState({ title: '', content: '' });
     const [image, setImage] = useState(null)
 
     const handleSubmit = (e) => { 
         e.preventDefault()
-        addArticle({title:state.title,content: state.content,image:image, image_name:image.name})
+        addArticle({ title: state.title, content: state.content, image: image, image_name: image.name })
+        navigate("/articles");
     }
    
 
@@ -36,52 +38,41 @@ function AddArticle() {
     }
 
     return (
-        // <div className='story-form'>
-        //     Add Article: 
-        //     <form onSubmit={ e => handleSubmit(e)}>
-        //         <label>
-        //             Title:<input onChange={e => setState({ ...state, [e.target.name]: e.target.value })}
-        //                 value={state.title} type="text" name="title" />
-        //         </label><br />
-
-        //         <label>
-        //             Content:
-        //             <textarea onChange={e =>   setState({ ...state, [e.target.name]: e.target.value })}
-        //                 value={state.content} type="text" name="content" />
-        //         </label><br />
-        //         <label>
-                    
-        //             Image
-        //             <input
-        //                 type="file"
-        //                 name="image"
-        //                 onChange={(event) => {
-        //                     setImage(event.target.files[0]);
-        //                 }}
-        //             />
-                    
-        //         </label>
-        //         <input type="submit" value="Submit" />
-        //     </form>
-        // </div>
         <div className="container">
-    <form action="/action_page.php">
+    <form onSubmit={ e => handleSubmit(e)}>
         <div className="row">
             <div className="col-25">
-            <label htmlFor="title">Title</label>
+                        <label htmlFor="title">Title</label>
+                        
             </div>
             <div className="col-75">
             <input onChange={e => setState({ ...state, [e.target.name]: e.target.value })}
-                        value={state.title} type="text" name="title" />
+                          type="text" name="title" placeholder='Write Title...' />
             </div>
         </div>
        
         <div className="row">
             <div className="col-25">
-            <label htmlFor="subject">Subject</label>
+            <label htmlFor="content">Content</label>
             </div>
             <div className="col-75">
-                        <textarea id="subject" name="subject" placeholder="Write something.." style={{height : 200 + 'px'}}></textarea>
+                        <textarea onChange={e =>   setState({ ...state, [e.target.name]: e.target.value })}
+                         type="text" name="content" style={{ height: 200 + 'px' }} placeholder="Write something.." />
+            </div>
+                </div>
+        <div className="row">
+            <div className="col-25">
+                        <label htmlFor="title">Image</label>
+                        
+            </div>
+            <div className="col-75">
+            <input
+                        type="file"
+                        name="image"
+                        onChange={(event) => {
+                            setImage(event.target.files[0]);
+                        }}
+                    />
             </div>
         </div>
         <br/>

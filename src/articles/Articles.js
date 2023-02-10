@@ -2,6 +2,7 @@ import React ,{ useState ,useEffect} from 'react';
 import { Link } from "react-router-dom";
 import './Articles.css';
 
+
 function Articles() {
 
     const [articles, setArticles] = useState([]);
@@ -15,12 +16,12 @@ function Articles() {
     }
 
     useEffect(() => {
+        
         getArticles()
+        
+        
     }, [])  
 
-   
-    
-    
     return (
         <div>
              <div className='grid-container'>
