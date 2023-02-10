@@ -13,6 +13,7 @@ function Navbar() {
                 <Link to="/articles">Race Reviews</Link> 
                 <Link to="/articles">F1 Stories</Link> 
                 <Link to="/about">About</Link> 
+                <Link to="/add">Add Article</Link>
 
         </div>
             

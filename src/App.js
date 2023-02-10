@@ -10,6 +10,7 @@ import About from './About';
 import Article from './articles/Article';
 import Articles from './articles/Articles';
 import EditArticle from './articles/EditArticle';
+import AddArticle from './articles/AddArticle';
 function App() {
   return (
     <div className="App">
@@ -22,6 +23,7 @@ function App() {
       <Route path="about" element={<About />} />
       <Route path="articles/:articleId" element={<Article />} />
       <Route path="articles/edit/:articleId" element={<EditArticle />} />
+      <Route path="add" element={<AddArticle />} />
 
     </Routes>
   </BrowserRouter>

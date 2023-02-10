@@ -1,8 +1,6 @@
 import React ,{ useState ,useEffect} from 'react';
 import { Link } from "react-router-dom";
-import AddArticle from './AddArticle';
 import './Articles.css';
-import axios from 'axios';
 
 function Articles() {
 
@@ -20,30 +18,11 @@ function Articles() {
         getArticles()
     }, [])  
 
-    const addArticle =  async (article) => { 
-        let articles_new = [...articles, article]
-
-        try {
-            await axios.post("/api/articles", article, {
-            mode: 'cors',
-              headers: {
-                "Content-Type": "multipart/form-data"
-              }
-            });
-          } catch (err) {
-            console.log(err);
-          }
-        
-        // TODO et all articles again
-        setArticles(articles_new);    
-        getArticles();
-        console.log(articles)
-    }
+   
     
     
     return (
         <div>
-            <AddArticle addArticle={addArticle}></AddArticle>
              <div className='grid-container'>
                 {articles.map((article) => {
                    
