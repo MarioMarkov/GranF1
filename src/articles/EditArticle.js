@@ -49,35 +49,50 @@ function EditArticle() {
     }   
 
     return (
-        <div className='edit-content'>
+        <div className="container">
+            <h3 className='form-title'>Edit Article: </h3>
 
-             <form onSubmit={ e => handleSubmit(e)}>
-                <label>
-                    Title:
-                    <input defaultValue={article.title} onChange={e => setState({ ...state, [e.target.name]: e.target.value })}
+    <form onSubmit={ e => handleSubmit(e)}>
+        <div className="row">
+            <div className="col-25">
+                        <label htmlFor="title">Title</label>
+                        
+            </div>
+            <div className="col-75">
+            <input defaultValue={article.title} onChange={e => setState({ ...state, [e.target.name]: e.target.value })}
                         type="text" name="title" />
-                </label><br /><br />
-                <label>
-                    Content:
-                    <textarea onChange={e =>   setState({ ...state, [e.target.name]: e.target.value })}
-                        defaultValue={article.content} type="text" name="content"  />
-                </label> 
-                <br />
-                <label>
-                    
-                    Image
-                    <input
+            </div>
+        </div>
+       
+        <div className="row">
+            <div className="col-25">
+            <label htmlFor="content">Content</label>
+            </div>
+            <div className="col-75">
+            <textarea onChange={e =>   setState({ ...state, [e.target.name]: e.target.value })}
+                        defaultValue={article.content} type="text" name="content"  />  </div>
+                </div>
+        <div className="row">
+            <div className="col-25">
+                        <label htmlFor="title">Image</label>
+                        
+            </div>
+            <div className="col-75">
+            <input
                         type="file"
                         name="image"
                         onChange={(event) => {
                             setState({...state,image_name:event.target.files[0].name });
                         }}
                     />
-                    
-                </label> <br /><br />
-                <input type="submit" value="Submit" />
-            </form>
+            </div>
         </div>
+        <br/>
+        <div className="row">
+            <input type="submit" value="Submit"/>
+        </div>
+        </form>
+    </div>
     );
 }
 

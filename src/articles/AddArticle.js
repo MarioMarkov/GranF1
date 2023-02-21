@@ -39,7 +39,9 @@ function AddArticle() {
 
     return (
         <div className="container">
-    <form onSubmit={ e => handleSubmit(e)}>
+            <h2 className='form-title'>Add Article: </h2>
+
+            <form onSubmit={e => handleSubmit(e)}>
         <div className="row">
             <div className="col-25">
                         <label htmlFor="title">Title</label>

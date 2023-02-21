@@ -66,3 +66,7 @@ input[type=text], select, textarea {
       margin-top: 0;
     }
   }
+
+.form-title{
+    text-align: center;
+}
