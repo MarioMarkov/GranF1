@@ -1,51 +1,15 @@
-import { React,  useState} from 'react';
-import storage from './fireBaseConfig.js'
-import {
-    getDownloadURL,
-    ref,
-    uploadBytesResumable
-} from 'firebase/storage';
+import { React} from 'react';
+
 
 function About() {
 
-    const [percent, setPercent] = useState(0);
-    const [file, setFile] = useState("");
-    function handleChange(event) {
-        setFile(event.target.files[0]);
-    }
-    function handleUpload() { 
-        if (!file) { 
-            alert("Pleawse choose a file first!")
-        }
-    
-        const storageRef = ref(storage, `/files/${file.name}`)
-        const uploadTask = uploadBytesResumable(storageRef, file)
-        
-        uploadTask.on(
-            "state_changed",
-            (snapshot) => {
-                const percent = Math.round(
-                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                )
-    
-                setPercent(percent)
-            },
-            (err) => console.log(err),
-            () => { 
-                getDownloadURL(uploadTask.snapshot.ref).then((url) => { 
-                    console.log(url)
-                })
-            }
-            
-        )
-    }
+   
+
+
     return (
         <div>
-            <div>
-            <input type="file" onChange={handleChange} accept="" />
-            <button onClick={handleUpload}>Upload to Firebase</button>
-                <p>{percent} "% done"</p>
-            </div>
+            
+            <img  src='https://firebasestorage.googleapis.com/v0/b/granf1.appspot.com/o/images%2Fmax-verstappen-red-bull-racing.jpg?alt=media&token=b18cd3f1-e829-4265-a99c-1ee031a2136e'></img>
         </div>
     );
 }

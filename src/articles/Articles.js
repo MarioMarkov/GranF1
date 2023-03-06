@@ -16,10 +16,7 @@ function Articles() {
     }
 
     useEffect(() => {
-        
         getArticles()
-        
-        
     }, [])  
 
     return (

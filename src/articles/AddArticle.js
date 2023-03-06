@@ -3,19 +3,62 @@ import { useState } from 'react';
 import axios from 'axios';
 import './AddArticle.css';
 import { useNavigate } from "react-router-dom";
+import storage from '../fireBaseConfig.js'
+import {
+    getDownloadURL,
+    ref,
+    uploadBytesResumable,
+} from 'firebase/storage';
 
 
 function AddArticle() {
 
-    // Image markdown tag ![alt text htmlFor screen readers](link "Text to show on mouseover").
-
     const navigate = useNavigate();
-    const [state, setState] = useState({ title: '', content: '' });
-    const [image, setImage] = useState(null)
+
+    const [file, setFile] = useState("");
+    const [imageUrl, setImageUrl] = useState("")
+    const [state, setState] = useState({ title: '', content: '' ,image_url : ''});
+    const [percent, setPercent] = useState(0);
+
+    function handleUpload() { 
+        if (!file) { 
+            alert("Upload a file")
+        }
+        const storageRef = ref(storage, `/images/${file.name}`)
+        const uploadTask = uploadBytesResumable(storageRef, file)
+        
+        uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+                const percent = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                    
+                setPercent(percent);
+    
+            },
+            (err) => console.log(err),
+            () => { 
+                getDownloadURL(uploadTask.snapshot.ref).then((url) => { 
+                    console.log(url)
+                    setImageUrl(url)
+                })
+            }
+            
+        )
+    }
+    
+
+    function handleChange(event) {
+        setFile(event.target.files[0])
+        
+    }
+
 
     const handleSubmit = (e) => { 
         e.preventDefault()
-        addArticle({ title: state.title, content: state.content, image: image, image_name: image.name })
+        if (!file) { 
+            alert("Please choose an image first!")
+        }
+        addArticle({ title: state.title, content: state.content, image_url: imageUrl })
         navigate("/articles");
     }
    
@@ -24,10 +67,7 @@ function AddArticle() {
 
         try {
             await axios.post("/api/articles", article, {
-            mode: 'cors',
-              headers: {
-                "Content-Type": "multipart/form-data"
-              }
+            mode: 'cors'
             });
           } catch (err) {
             console.log(err);
@@ -68,13 +108,12 @@ function AddArticle() {
                         
             </div>
             <div className="col-75">
-            <input
-                        type="file"
-                        name="image"
-                        onChange={(event) => {
-                            setImage(event.target.files[0]);
-                        }}
-                    />
+            <div>
+                    <input type="file" onChange={handleChange} accept="" />
+                    <button type='button' onClick={handleUpload}>Upload to Firebase</button>
+                    <p>{percent} "% done"</p>
+
+            </div>
             </div>
         </div>
         <br/>

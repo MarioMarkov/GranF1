@@ -9,7 +9,7 @@ const articleSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    image_name: {
+    image_url: {
         type: String,
         required: true
     }

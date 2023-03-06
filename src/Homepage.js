@@ -20,7 +20,7 @@ function Homepage() {
   }, []);
   
   const getImage = (index) => { 
-    return articles.length >index-1 ? `http://localhost:3000/images/${articles[articles.length-index].image_name}`: null
+    return articles.length >index-1 ? articles[articles.length-index].image_url : null
   }
 
 
@@ -43,7 +43,7 @@ function Homepage() {
             return (
               <div className="post">
             <div className="post-card">
-                <img className='article-img' src={`http://localhost:3000/images/${article.image_name}`} alt='' />
+                <img className='article-img' src={article.image_url} alt='' />
                   <div className='card-text'>
                     <h3><p>{ article.title}  </p></h3>
                     <p>Lorem ipsum sit dolor amit</p>

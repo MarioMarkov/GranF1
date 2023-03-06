@@ -14,8 +14,6 @@ function Article() {
     const navigate = useNavigate();
     const params = useParams()
     const [article, setArticle] = useState({});
-    const [image, setImage] = useState({})
-
 
   
     useEffect(() => {
@@ -24,21 +22,12 @@ function Article() {
             await axios.get("/api/articles/".concat(params.articleId))
                 .then(response => {
                     setArticle(response.data)
+                    console.log(response.data.image_url)
                 })
                 .catch((err) => console.log(err));
         }
         fetchData();
-        async function fetchImage() { 
-            await fetch(`/api/articles/${params.articleId}/image`)
-            .then(response => response.blob())
-            .then(imageBlob => {
-                // Then create a local URL for that image and print it 
-                const imageObjectURL = URL.createObjectURL(imageBlob);
-                setImage(imageObjectURL)
-            })
-        }
-
-        fetchImage()
+        
         
     }, [params.articleId])
 
@@ -73,7 +62,7 @@ function Article() {
             <div className='article-image'>
 
             </div>
-                {!(image instanceof Object) ? <img alt='' src={image} width="300" /> : null}
+                {article && <img alt='' src={article.image_url} width="300" /> }
             <div className='article-content'>
             
                 {article.content && <ReactMarkdown rehypePlugins={[rehypeRaw]} >{article.content}</ReactMarkdown>} 
