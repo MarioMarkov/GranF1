@@ -27,9 +27,11 @@ router.get('/',(req,res)=>{
 })
 
 // @route /api/articles
-router.get('/articles', async (req,res)=>{
+router.get('/articles', async (req, res) => {
   const articles = await Article.find()
-    res.send(articles)
+  console.log(articles)
+
+  res.send(articles)
 })
 
 // @action post
