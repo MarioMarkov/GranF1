@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Navbar.css';
 import { Link } from "react-router-dom";
+
+
 function Navbar() {
+  
     return (
 
     <div className="navbar">
@@ -14,7 +17,6 @@ function Navbar() {
                 <Link to="/articles">F1 Stories</Link> 
                 <Link to="/about">About</Link> 
                 <Link to="/add">Add Article</Link>
-
         </div>
             
             {/* <div className='navbar-search'>

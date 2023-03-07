@@ -9,6 +9,7 @@ import {
     ref,
     uploadBytesResumable,
 } from 'firebase/storage';
+import { redirect } from "react-router-dom";
 
 
 function AddArticle() {
@@ -59,7 +60,9 @@ function AddArticle() {
             alert("Please choose an image first!")
         }
         addArticle({ title: state.title, content: state.content, image_url: imageUrl })
-        navigate("/articles");
+        redirect("/articles");
+        navigate("/articles")
+
     }
    
 

@@ -11,6 +11,9 @@ import Article from './articles/Article';
 import Articles from './articles/Articles';
 import EditArticle from './articles/EditArticle';
 import AddArticle from './articles/AddArticle';
+import SignUp from './auth/SignUp.js';
+import Login from './auth/Login';
+
 function App() {
   return (
     <div className="App">
@@ -24,6 +27,8 @@ function App() {
       <Route path="articles/:articleId" element={<Article />} />
       <Route path="articles/edit/:articleId" element={<EditArticle />} />
       <Route path="add" element={<AddArticle />} />
+      <Route path="signup" element={<SignUp />} />
+      <Route path="login" element={<Login/>}/>
 
     </Routes>
   </BrowserRouter>

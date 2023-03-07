@@ -1,9 +1,9 @@
 .grid-container {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 30px;
     padding: 10px;
-  }
+}
 .grid-item {
   text-align: center;
 }

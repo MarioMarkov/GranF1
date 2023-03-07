@@ -10,13 +10,14 @@ import {
     ref,
     uploadBytesResumable,
 } from 'firebase/storage';
+import { redirect } from "react-router-dom";
 
 
 
 
 function EditArticle() {
     
-    const params = useParams()
+    const params = useParams();
     const navigate = useNavigate();
 
     const [file, setFile] = useState("");
@@ -85,13 +86,14 @@ function EditArticle() {
         )
     }
 
-    const handleSubmit = (e) => { 
+    const handleSubmit = async (e) => { 
         e.preventDefault()
         if (!file) { 
             alert("Please choose an image first!")
         }
-        editArticle(state)        
-        navigate(-1);
+        await editArticle(state)  
+        navigate(`/articles/${article._id}`);
+        redirect(`/articles/${article._id}`)
     }   
 
     return (
