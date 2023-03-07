@@ -42,7 +42,7 @@ function Homepage() {
         <div id="posts">
           {articles.length > 0 ? articles.slice(-5).map(article => { 
             return (
-              <div className="post">
+              <div className="post" key={ article._id}>
                 <Link to={`/articles/${article._id}`} key={ article._id}>
 
                   <div className="post-card">

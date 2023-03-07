@@ -1,10 +1,23 @@
 import React, { useEffect } from 'react';
 import './Navbar.css';
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
+import { useUserAuth } from "../context/UserAuthContext";
+import { Button } from "react-bootstrap";
 
 
 function Navbar() {
-  
+
+    const { logOut, user } = useUserAuth();
+    const navigate = useNavigate();
+    const handleLogout = async () => {
+      try {
+        await logOut();
+        navigate("/");
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
     return (
 
     <div className="navbar">
@@ -17,16 +30,12 @@ function Navbar() {
                 <Link to="/articles">F1 Stories</Link> 
                 <Link to="/about">About</Link> 
                 <Link to="/add">Add Article</Link>
+                <Button variant="primary" onClick={handleLogout}>
+                    Log out
+                </Button>
         </div>
             
-            {/* <div className='navbar-search'>
-                <div className="search-container">
-                        <form action="/action_page.php">
-                        <input type="text" placeholder="Search.." name="search"/>
-                        <button type="submit"><i className="fa fa-search"></i></button>
-                        </form>
-                    </div>
-                </div> */}
+          
     </div>
     );
 }
