@@ -49,7 +49,6 @@ router.post("/articles/edit/:id", async (req, res) => {
   article.title =  req.body.title,  
   article.content = req.body.content,
   article.image_url = req.body.image_url
-  console.log(article)
   await article.save()
   res.send(article)
 })

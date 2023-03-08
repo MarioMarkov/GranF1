@@ -39,17 +39,17 @@ function Homepage() {
           </div>
         </div>
         </Link>
-        <div id="posts">
+        <div className="grid-container">
           {articles.length > 0 ? articles.slice(-5).map(article => { 
             return (
-              <div className="post" key={ article._id}>
+              <div className="grid-item" key={ article._id}>
                 <Link to={`/articles/${article._id}`} key={ article._id}>
 
                   <div className="post-card">
                       <img className='article-img' src={article.image_url} alt='' />
                         <div className='card-text'>
-                          <h3><p>{ article.title}  </p></h3>
-                          <p>Lorem ipsum sit dolor amit</p>
+                          <h3><p> { article.title }  </p></h3>
+                          <p>{ article.content.slice(0,40) + '...'  }</p>
                         </div>
                         
                     </div>
