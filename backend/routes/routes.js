@@ -10,12 +10,23 @@ router.get('/',(req,res)=>{
 })
 
 // @route /api/articles
-router.get('/articles', async (req, res) => {
+router.get('/articles/all', async (req, res) => {
   const articles = await Article.find()
 
   res.send(articles)
 })
 
+
+// @route /api/articles
+router.get('/articles/all/:raceReviews', async (req, res) => {
+  var isRaceReviews = (String(req.params.raceReviews).toLowerCase() === 'true')
+
+  const articles = await Article.find()
+
+  articles_filtered = articles.filter(a => a.race_review == isRaceReviews)
+  
+  res.send(articles_filtered)
+})
 
  
 // @route /api/stories/:id

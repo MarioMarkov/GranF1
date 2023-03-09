@@ -17,12 +17,11 @@ function Article() {
 
   
     useEffect(() => {
-
+        console.log(params.articleId)
         async function fetchData() {
             await axios.get("/api/articles/".concat(params.articleId))
                 .then(response => {
                     setArticle(response.data)
-                    console.log(response.data.image_url)
                 })
                 .catch((err) => console.log(err));
         }

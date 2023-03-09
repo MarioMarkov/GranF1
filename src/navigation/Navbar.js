@@ -26,8 +26,8 @@ function Navbar() {
         </div>
         <div className='navbar-links'>
                 <Link to="/">Home</Link> 
-                <Link to="/articles">Race Reviews</Link> 
-                <Link to="/articles">F1 Stories</Link> 
+                <Link to="/articles/all/true">Race Reviews</Link> 
+                <Link to="/articles/all/false">F1 Stories</Link> 
                 <Link to="/about">About</Link> 
           <Link to="/add">Add Article</Link>
           { user && <Button variant="primary" onClick={handleLogout}>

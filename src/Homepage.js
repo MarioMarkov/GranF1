@@ -11,7 +11,7 @@ function Homepage() {
   useEffect(() => {
     // Getting all articles 
     async function fetchArticles() { 
-      await axios.get("/api/articles")
+      await axios.get("/api/articles/all")
         .then(response => {
         setArticles(response.data)
     }).catch((err) => console.log(err));
