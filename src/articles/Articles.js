@@ -22,7 +22,7 @@ function Articles() {
     return (
         <div>
              <div className='grid-container'>
-                {articles.map((article) => {
+                {articles.reverse().map((article) => {
                    
                     return (
                         

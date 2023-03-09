@@ -32,7 +32,7 @@ function Homepage() {
           key={articles.length > 0 ? `/articles/${articles[articles.length - 1]._id}` : "#"}>
         <div className='showcase'>
           <div className='picture'>
-            <img className='article-img' src={getImage(1)}  alt="" />
+            <img className='showcase-img' src={getImage(1)}  alt="" />
           </div>
           <div className='title'>
             {articles.length >0 ? articles[articles.length-1].title : null}  
@@ -40,7 +40,7 @@ function Homepage() {
         </div>
         </Link>
         <div className="grid-container">
-          {articles.length > 0 ? articles.slice(-5).map(article => { 
+          {articles.length > 0 ? articles.slice(-7).reverse().slice(1).map(article => { 
             return (
               <div className="grid-item" key={ article._id}>
                 <Link to={`/articles/${article._id}`} key={ article._id}>

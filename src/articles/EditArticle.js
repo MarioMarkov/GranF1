@@ -11,6 +11,7 @@ import {
     uploadBytesResumable,
 } from 'firebase/storage';
 import { redirect } from "react-router-dom";
+import ReactSwitch from 'react-switch';
 
 
 
@@ -26,7 +27,8 @@ function EditArticle() {
     const [article, setArticle] = useState({});
 
     // Values set in the input fields
-    const [state, setState] = useState({title: '', content:'', image_url : ''});
+    const [state, setState] = useState({ title: '', content: '', image_url: '', race_review: false });
+    
     const [percent, setPercent] = useState(0);
 
 
@@ -91,7 +93,12 @@ function EditArticle() {
         if (!file) { 
             alert("Please choose an image first!")
         }
-        await editArticle(state)  
+        await  editArticle({
+            title: state.title,
+            content: state.content,
+            image_url: state.image_url,
+            race_review: state.race_review
+        })
         navigate(`/articles/${article._id}`);
         redirect(`/articles/${article._id}`)
     }   
@@ -120,6 +127,16 @@ function EditArticle() {
             <textarea onChange={e =>   setState({ ...state, [e.target.name]: e.target.value })}
                         defaultValue={article.content} type="text" name="content"  />  </div>
                 </div>
+        <div className="row">
+            <div className="col-25">
+            <label htmlFor="race_review">Race Review</label>
+            </div>
+            <div className="col-75">
+                        <ReactSwitch
+                        checked={state.race_review}
+                            onChange={e => setState({...state, race_review : e})}/>
+            </div>
+        </div>
         <div className="row">
             <div className="col-25">
                         <label htmlFor="title">Image</label>

@@ -10,6 +10,7 @@ import {
     uploadBytesResumable,
 } from 'firebase/storage';
 import { redirect } from "react-router-dom";
+import ReactSwitch from 'react-switch';
 
 
 function AddArticle() {
@@ -17,8 +18,7 @@ function AddArticle() {
     const navigate = useNavigate();
 
     const [file, setFile] = useState("");
-    const [imageUrl, setImageUrl] = useState("")
-    const [state, setState] = useState({ title: '', content: '' ,image_url : ''});
+    const [state, setState] = useState({ title: '', content: '' ,image_url : '',race_review: false});
     const [percent, setPercent] = useState(0);
 
     function handleUpload() { 
@@ -40,7 +40,7 @@ function AddArticle() {
             () => { 
                 getDownloadURL(uploadTask.snapshot.ref).then((url) => { 
                     console.log(url)
-                    setImageUrl(url)
+                    setState({ ...state, image_url: url })
                 })
             }
             
@@ -59,7 +59,12 @@ function AddArticle() {
         if (!file) { 
             alert("Please choose an image first!")
         }
-        addArticle({ title: state.title, content: state.content, image_url: imageUrl })
+        addArticle({
+            title: state.title,
+            content: state.content,
+            image_url: state.image_url,
+            race_review: state.race_review
+        })
         redirect("/articles");
         navigate("/articles")
 
@@ -105,6 +110,16 @@ function AddArticle() {
                          type="text" name="content" style={{ height: 200 + 'px' }} placeholder="Write something.." />
             </div>
                 </div>
+            <div className="row">
+            <div className="col-25">
+            <label htmlFor="race_review">Race Review</label>
+            </div>
+            <div className="col-75">
+                        <ReactSwitch
+                        checked={state.race_review}
+                            onChange={e => setState({...state, race_review : e})}/>
+            </div>
+        </div>
         <div className="row">
             <div className="col-25">
                         <label htmlFor="title">Image</label>

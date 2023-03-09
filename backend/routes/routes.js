@@ -16,17 +16,7 @@ router.get('/articles', async (req, res) => {
   res.send(articles)
 })
 
-// @action post
-// @route /api/articles 
-router.post("/articles", async (req, res) => {
-    const article = new Article({
-      title: req.body.title,  
-      content: req.body.content,
-      image_url:req.body.image_url
-    })
-	await article.save()
-	res.send(article)
-})
+
  
 // @route /api/stories/:id
 router.get("/articles/:id", async (req, res) => {
@@ -42,6 +32,25 @@ router.get('/articles/:id/image', async (req, res) => {
   res.send(article.image_url);
 });
 
+// @action post
+// @route /api/articles
+
+// title: state.title,
+// content: state.content,
+// image_url: state.image_url,
+// date: new Date(),
+// race_review: state.race_review
+router.post("/articles", async (req, res) => {
+  const article = new Article({
+    title: req.body.title,  
+    content: req.body.content,
+    image_url: req.body.image_url,
+    race_review : req.body.race_review,
+    date : new Date()
+  })
+  await article.save()
+  res.send(article)
+})
 
 // @route /api/articles/edit/:id
 router.post("/articles/edit/:id", async (req, res) => {
@@ -49,6 +58,8 @@ router.post("/articles/edit/:id", async (req, res) => {
   article.title =  req.body.title,  
   article.content = req.body.content,
   article.image_url = req.body.image_url
+  article.race_review = req.body.race_review,
+
   await article.save()
   res.send(article)
 })
