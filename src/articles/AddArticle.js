@@ -65,8 +65,8 @@ function AddArticle() {
             image_url: state.image_url,
             race_review: state.race_review
         })
-        redirect("/articles");
-        navigate("/articles")
+        redirect("/articles/all/true");
+        navigate("/articles/all/true")
 
     }
    
@@ -80,9 +80,6 @@ function AddArticle() {
           } catch (err) {
             console.log(err);
           }
-        
-        // TODO et all articles again
-        console.log(article)
     }
 
     return (

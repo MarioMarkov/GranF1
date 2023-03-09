@@ -12,28 +12,36 @@ function Articles() {
         fetch("/api/articles/all/".concat(params.raceReviews))
             .then(resp => resp.json())
             .then(data => { 
-                setArticles(data.reverse())
+                setArticles(data.sort((a, b) => {
+                    return new Date(b.date) - new Date(a.date);
+                }))
             })
     }
 
     useEffect(() => {
-        console.log(params.raceReviews)
         getArticles()
-        
     }, [params.raceReviews])  
 
     return (
-        <div>
+        <div className='main-content'>
              <div className='grid-container'>
-                {articles.map((article) => {
+                {articles && articles.map((article) => {
                    
                     return (
                         
-                        <div className='grid-item article-item' key={article._id}>
-                            <Link to={`/articles/${article._id}`} key={article._id}>
-                                <div>Title : {article.title}</div>                               
-                            </Link>
-                        </div>
+                        <div className="grid-item" key={ article._id}>
+                        <Link to={`/articles/${article._id}`} key={ article._id}>
+        
+                          <div className="post-card">
+                              <img className='article-img' src={article.image_url} alt='' />
+                                <div className='card-text'>
+                                  <h3><p> { article.title }  </p></h3>
+                                  <p>{ article.content.slice(0,40) + '...'  }</p>
+                                </div>
+                                
+                            </div>
+                          </Link>
+                      </div>
                     );
                 })}
             </div>
