@@ -2,22 +2,22 @@ const express = require('express');
 const Article = require('../models/Article.js');
 const router = express.Router();
 
-
-
-// @route /api
+// @desc Test Routes
+// @route GET /api/
 router.get('/',(req,res)=>{
     res.send({msg:"Hello"})
 })
 
-// @route /api/articles
+// @desc Get all articles
+// @route GET /api/articles/all
 router.get('/articles/all', async (req, res) => {
   const articles = await Article.find()
 
   res.send(articles)
 })
 
-
-// @route /api/articles
+// @desc Get all articles from a type 
+// @route GET /api/articles/all/:raceReviews
 router.get('/articles/all/:raceReviews', async (req, res) => {
   var isRaceReviews = (String(req.params.raceReviews).toLowerCase() === 'true')
 
@@ -28,29 +28,16 @@ router.get('/articles/all/:raceReviews', async (req, res) => {
   res.send(articles_filtered)
 })
 
- 
-// @route /api/stories/:id
+// @desc Get article by id
+// @route GET /api/articles/:id
 router.get("/articles/:id", async (req, res) => {
   const article = await Article.findById(req.params.id)
 
 	res.send(article)
 })
 
-// @route /api/articles/:id/image
-router.get('/articles/:id/image', async (req, res) => {
-  const article = await Article.findById(req.params.id)
-
-  res.send(article.image_url);
-});
-
-// @action post
-// @route /api/articles
-
-// title: state.title,
-// content: state.content,
-// image_url: state.image_url,
-// date: new Date(),
-// race_review: state.race_review
+// @desc Post an article
+// @route POST /api/articles
 router.post("/articles", async (req, res) => {
   const article = new Article({
     title: req.body.title,  
@@ -63,9 +50,12 @@ router.post("/articles", async (req, res) => {
   res.send(article)
 })
 
-// @route /api/articles/edit/:id
+
+// @desc Post edited article
+// @route GET /api/articles/edit/:id
 router.post("/articles/edit/:id", async (req, res) => {
   const article = await Article.findById(req.params.id)
+  
   article.title =  req.body.title,  
   article.content = req.body.content,
   article.image_url = req.body.image_url
@@ -75,10 +65,11 @@ router.post("/articles/edit/:id", async (req, res) => {
   res.send(article)
 })
 
-
-// @route /api/articles/delete/:id
+// @desc Delete  article
+// @route GET /api/articles/delete/:id
 router.delete("/articles/delete/:id", async (req, res) => {
-  let article = await Article.deleteOne({_id: req.params.id})
+  let article = await Article.deleteOne({ _id: req.params.id })
+  
   res.send(article)
 })
 
