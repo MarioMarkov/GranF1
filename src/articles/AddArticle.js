@@ -74,14 +74,7 @@ function AddArticle() {
     const addArticle =  async (article) => { 
 
         try {
-            const headers = {
-                "Access-Control-Allow-Origin": "*",
-              }
-              
-            await axios.post("https://granf1-production.up.railway.app/api/articles", article,
-            {
-                headers: headers
-            });
+            await axios.post("https://granf1-production.up.railway.app/api/articles", article);
           } catch (err) {
             console.log(err);
           }

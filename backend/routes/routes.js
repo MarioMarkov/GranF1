@@ -2,17 +2,12 @@ const express = require('express');
 const Article = require('../models/Article.js');
 const router = express.Router();
 
-router.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+
 
 // @desc Get all articles
 // @route GET /api/articles/all
 router.get('/articles/all', async (req, res) => {
   const articles = await Article.find()
-  res.header("Access-Control-Allow-Origin", "*");
 
   res.send(articles)
 })
@@ -25,7 +20,6 @@ router.get('/articles/all/:raceReviews', async (req, res) => {
   const articles = await Article.find()
 
   articles_filtered = articles.filter(a => a.race_review == isRaceReviews)
-  res.header("Access-Control-Allow-Origin", "*");
 
   res.send(articles_filtered)
 })
@@ -34,7 +28,6 @@ router.get('/articles/all/:raceReviews', async (req, res) => {
 // @route GET /api/articles/:id
 router.get("/articles/:id", async (req, res) => {
   const article = await Article.findById(req.params.id)
-  res.header("Access-Control-Allow-Origin", "*");
 
 	res.send(article)
 })
@@ -50,7 +43,6 @@ router.post("/articles", async (req, res) => {
     date : new Date()
   })
   await article.save()
-  res.header("Access-Control-Allow-Origin", "*");
   res.send(article)
 })
 
@@ -66,7 +58,6 @@ router.post("/articles/edit/:id", async (req, res) => {
   article.race_review = req.body.race_review,
 
   await article.save()
-  res.header("Access-Control-Allow-Origin", "*");
   res.send(article)
 })
 
@@ -74,7 +65,6 @@ router.post("/articles/edit/:id", async (req, res) => {
 // @route GET /api/articles/delete/:id
 router.delete("/articles/delete/:id", async (req, res) => {
   let article = await Article.deleteOne({ _id: req.params.id })
-  res.header("Access-Control-Allow-Origin", "*");
 
   res.send(article)
 })
