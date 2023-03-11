@@ -9,9 +9,15 @@ function Homepage() {
   const [articles, setArticles] = useState({});
 
   useEffect(() => {
+    const config = {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    };
     // Getting all articles 
     async function fetchArticles() { 
-      await axios.get("https://granf1-production.up.railway.app/api/articles/all")
+      await axios.get("/api/articles/all",config)
         .then(response => {
           setArticles(response.data.sort((a, b) => { 
             return new Date(b.date) - new Date(a.date);
@@ -21,9 +27,6 @@ function Homepage() {
     fetchArticles();
   }, []);
   
-
-
-
     return (
       
       <div className="main-content">
