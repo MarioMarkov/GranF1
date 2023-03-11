@@ -43,6 +43,7 @@ router.post("/articles", async (req, res) => {
     date : new Date()
   })
   await article.save()
+  res.header("Access-Control-Allow-Origin", "*");
   res.send(article)
 })
 
