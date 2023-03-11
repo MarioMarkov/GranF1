@@ -19,7 +19,7 @@ function Article() {
     useEffect(() => {
         console.log(params.articleId)
         async function fetchData() {
-            await axios.get("/api/articles/".concat(params.articleId))
+            await axios.get("https://granf1-production.up.railway.app/api/articles/".concat(params.articleId))
                 .then(response => {
                     setArticle(response.data)
                 })
@@ -34,7 +34,7 @@ function Article() {
     const deleteImage = async (articleId) => {
 
         if (window.confirm("Are you sure!") === true) {
-            let result = await fetch(`/api/articles/delete/${articleId}`, {
+            let result = await fetch(`https://granf1-production.up.railway.app/api/articles/delete/${articleId}`, {
                 method: "DELETE"
             })
             result = await result.json()

@@ -10,11 +10,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+
 
 const mongoose = require('mongoose');
 
@@ -29,6 +25,12 @@ db.on('error', (err) => console.error(err));
 db.on('open', () => console.log('Connected to Mongoose'))
 
 app.use('/api', routes);
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 // Serve static assets in production
 if (process.env.NODE_ENV == 'production') { 

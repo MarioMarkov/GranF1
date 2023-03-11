@@ -74,9 +74,8 @@ function AddArticle() {
     const addArticle =  async (article) => { 
 
         try {
-            await axios.post("/api/articles", article, {
-            mode: 'cors'
-            });
+            
+            await axios.post("https://granf1-production.up.railway.app/api/articles", article);
           } catch (err) {
             console.log(err);
           }

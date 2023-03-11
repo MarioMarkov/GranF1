@@ -11,11 +11,13 @@ function Homepage() {
   useEffect(() => {
     // Getting all articles 
     async function fetchArticles() { 
-      await axios.get("/api/articles/all")
+
+      await axios.get("https://granf1-production.up.railway.app/api/articles/all")
         .then(response => {
           setArticles(response.data.sort((a, b) => { 
             return new Date(b.date) - new Date(a.date);
           }))
+    
     }).catch((err) => console.log(err));
     }
     fetchArticles();

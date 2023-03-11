@@ -9,10 +9,9 @@ function Articles() {
     const [articles, setArticles] = useState([]);
 
     const getArticles = () => { 
-        fetch("/api/articles/all/".concat(params.raceReviews))
-            .then(resp => resp.text())
+        fetch("https://granf1-production.up.railway.app/api/articles/all/".concat(params.raceReviews))
+            .then(resp => resp.json())
             .then(data => { 
-                console.log(data)
                 setArticles(data.sort((a, b) => {
                     return new Date(b.date) - new Date(a.date);
                 }))
