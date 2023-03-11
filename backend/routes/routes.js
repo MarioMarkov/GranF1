@@ -2,11 +2,7 @@ const express = require('express');
 const Article = require('../models/Article.js');
 const router = express.Router();
 
-// @desc Test Routes
-// @route GET /api/
-router.get('/',(req,res)=>{
-    res.send({msg:"Hello"})
-})
+
 
 // @desc Get all articles
 // @route GET /api/articles/all

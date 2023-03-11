@@ -53,5 +53,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:6000/"
+  "proxy": "https://granf1-production.up.railway.app/"
 }

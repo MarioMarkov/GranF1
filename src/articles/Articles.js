@@ -10,8 +10,9 @@ function Articles() {
 
     const getArticles = () => { 
         fetch("/api/articles/all/".concat(params.raceReviews))
-            .then(resp => resp.json())
+            .then(resp => resp.text())
             .then(data => { 
+                console.log(data)
                 setArticles(data.sort((a, b) => {
                     return new Date(b.date) - new Date(a.date);
                 }))
