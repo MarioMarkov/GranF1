@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const routes = require('./routes/routes');
 const dotenv = require("dotenv")
+const path = require('path')
 dotenv.config()
 
 const app = express();
@@ -22,6 +23,16 @@ db.on('error', (err) => console.error(err));
 db.on('open', () => console.log('Connected to Mongoose'))
 
 app.use('/api', routes);
+
+// Serve static assets in production
+if (process.env.NODE_ENV == 'production') { 
+  // Set static folder
+  app.use(express.static('../build'))
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'))
+  })
+}
 
 const PORT = process.env.PORT || 6000;
 
