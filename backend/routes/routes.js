@@ -65,7 +65,7 @@ router.post("/articles/edit/:id", async (req, res) => {
   res.send(article)
 })
 
-// @desc Delete  article
+// @desc Delete article
 // @route GET /api/articles/delete/:id
 router.delete("/articles/delete/:id", async (req, res) => {
   let article = await Article.deleteOne({ _id: req.params.id })
