@@ -12,9 +12,9 @@ import {
 } from 'firebase/storage';
 import { redirect } from "react-router-dom";
 import ReactSwitch from 'react-switch';
+import { config } from '../Constants';
 
-
-
+const URL = config.url;
 
 function EditArticle() {
     
@@ -35,7 +35,7 @@ function EditArticle() {
     useEffect(() => {
 
         async function fetchData() {
-            await axios.get("/api/articles/".concat(params.articleId))
+            await axios.get(`${URL}/api/articles/`.concat(params.articleId))
                 .then(response => {
                     setArticle(response.data)
                     setState(response.data)
@@ -47,7 +47,7 @@ function EditArticle() {
 
 
     const editArticle = async () => { 
-        await axios.post(`/api/articles/edit/${article._id}`, state, {
+        await axios.post(`${URL}/api/articles/edit/${article._id}`, state, {
           mode: 'cors',
             headers: {
             // It does not work with multipart/formdata unless sending an image

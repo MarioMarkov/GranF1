@@ -2,14 +2,16 @@ import React ,{ useState ,useEffect} from 'react';
 import { Link } from "react-router-dom";
 import './Articles.css';
 import { useParams } from 'react-router-dom';
+import { config } from '../Constants';
 
+const URL = config.url;
 
 function Articles() {
     const params = useParams();
     const [articles, setArticles] = useState([]);
 
     const getArticles = () => { 
-        fetch("https://granf1-production.up.railway.app/api/articles/all/".concat(params.raceReviews))
+        fetch(`${URL}/api/articles/all/`.concat(params.raceReviews))
             .then(resp => resp.json())
             .then(data => { 
                 setArticles(data.sort((a, b) => {

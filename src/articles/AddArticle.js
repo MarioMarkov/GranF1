@@ -11,7 +11,9 @@ import {
 } from 'firebase/storage';
 import { redirect } from "react-router-dom";
 import ReactSwitch from 'react-switch';
+import { config } from '../Constants';
 
+const URL = config.url;
 
 function AddArticle() {
 
@@ -74,7 +76,7 @@ function AddArticle() {
     const addArticle =  async (article) => { 
 
         try {
-            await axios.post("https://granf1-production.up.railway.app/api/articles", article);
+            await axios.post(`${URL}/api/articles`, article);
           } catch (err) {
             console.log(err);
           }

@@ -3,7 +3,9 @@ import React ,{ useState ,useEffect} from 'react';
 import './Homepage.css';
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import { config } from './Constants';
 
+const URL = config.url;
 
 function Homepage() {
   const [articles, setArticles] = useState({});
@@ -11,9 +13,9 @@ function Homepage() {
   useEffect(() => {
     // Getting all articles 
     async function fetchArticles() { 
-      await axios.get("https://granf1-production.up.railway.app/api/articles/all")
+      await axios.get(`${URL}/api/articles/all`)
         .then(response => {
-          console.log("tuka2")
+          console.log(URL)
           setArticles(response.data.sort((a, b) => { 
             return new Date(b.date) - new Date(a.date);
           }))

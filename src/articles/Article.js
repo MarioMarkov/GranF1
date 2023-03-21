@@ -6,7 +6,9 @@ import ReactMarkdown from 'react-markdown'
 import rehypeRaw from "rehype-raw";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { config } from '../Constants';
 
+const URL = config.url;
 
 
 function Article() {
@@ -19,7 +21,7 @@ function Article() {
     useEffect(() => {
         console.log(params.articleId)
         async function fetchData() {
-            await axios.get("https://granf1-production.up.railway.app/api/articles/".concat(params.articleId))
+            await axios.get(`${URL}/api/articles/`.concat(params.articleId))
                 .then(response => {
                     setArticle(response.data)
                 })
