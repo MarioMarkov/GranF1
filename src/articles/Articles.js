@@ -10,8 +10,8 @@ function Articles() {
     const params = useParams();
     const [articles, setArticles] = useState([]);
 
-    const getArticles = () => { 
-        fetch(`${URL}/api/articles/all/`.concat(params.raceReviews))
+    const getArticles = async () => { 
+        await fetch(`${URL}/api/articles/all/`.concat(params.raceReviews))
             .then(resp => resp.json())
             .then(data => { 
                 setArticles(data.sort((a, b) => {
@@ -20,7 +20,7 @@ function Articles() {
             })
     }
 
-    useEffect(() => {
+    useEffect( () => {
         getArticles()
     }, [params.raceReviews])  
 

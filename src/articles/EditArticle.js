@@ -47,14 +47,7 @@ function EditArticle() {
 
 
     const editArticle = async () => { 
-        await axios.post(`${URL}/api/articles/edit/${article._id}`, state, {
-          mode: 'cors',
-            headers: {
-            // It does not work with multipart/formdata unless sending an image
-            "Content-Type": "application/json"
-           }
-        });
-        
+        await axios.post(`${URL}/api/articles/edit/${article._id}`, state);
     }
 
     function handleChange(event) {

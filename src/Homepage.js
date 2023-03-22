@@ -15,7 +15,7 @@ function Homepage() {
     async function fetchArticles() { 
       await axios.get(`${URL}/api/articles/all`)
         .then(response => {
-          console.log(URL)
+        
           setArticles(response.data.sort((a, b) => { 
             return new Date(b.date) - new Date(a.date);
           }))
@@ -25,8 +25,6 @@ function Homepage() {
     fetchArticles();
   }, []);
   
-
-
 
     return (
       

@@ -19,7 +19,7 @@ function Article() {
 
   
     useEffect(() => {
-        console.log(params.articleId)
+        
         async function fetchData() {
             await axios.get(`${URL}/api/articles/`.concat(params.articleId))
                 .then(response => {
