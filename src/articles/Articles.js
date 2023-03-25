@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import './Articles.css';
 import { useParams } from 'react-router-dom';
 import { config } from '../Constants';
+import LoadingSpinner from "../navigation/LoadingSpinner.js";
 
 const URL = config.url;
 
@@ -24,10 +25,10 @@ function Articles() {
         getArticles()
     }, [params.raceReviews])  
 
-    return (
+    return articles.length >0 ? (
         <div className='main-content'>
              <div className='grid-container'>
-                {articles && articles.map((article) => {
+                {articles.map((article) => {
                    
                     return (
                         
@@ -49,6 +50,8 @@ function Articles() {
             </div>
         </div>
         
+    ):(
+        <LoadingSpinner  />
     );
 }
 

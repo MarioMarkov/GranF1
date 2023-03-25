@@ -4,19 +4,17 @@ import { useParams } from 'react-router-dom';
 import './Article.css'
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from "rehype-raw";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { config } from '../Constants';
-
+import EditDeleteButtons from './EditDeleteButtons';
+import LoadingSpinner from '../navigation/LoadingSpinner';
 const URL = config.url;
+
 
 
 function Article() {
 
-    const navigate = useNavigate();
     const params = useParams()
     const [article, setArticle] = useState({});
-
   
     useEffect(() => {
         
@@ -29,50 +27,31 @@ function Article() {
         }
         fetchData();
         
-        
     }, [params.articleId])
 
-
-    const deleteImage = async (articleId) => {
-
-        if (window.confirm("Are you sure!") === true) {
-            let result = await fetch(`https://granf1-production.up.railway.app/api/articles/delete/${articleId}`, {
-                method: "DELETE"
-            })
-            result = await result.json()
-            if (result) {             
-                navigate(-1);
-            }
-          } else {
-            return
-          }
-        
-
-        
-     }
    
-    return (
-        <div className='article-content'>
-            <Link className = 'edit-article-btn' to={`/articles/edit/${ article && article._id}`}>Edit Article</Link> 
-            
-            <button onClick={() => deleteImage(article._id)} className='delete-article-btn' > Delete </button> 
-
-            <div className = "article-title">
+    return article ? (
+        <div className='flex flex-col w-5/6 mx-auto'>
+            {process.env.NODE_ENV === 'development' ?
+                <EditDeleteButtons article = {article}/>:
+                <></>
+            }
+            <div className = "text-center text-7xl mb-3 border-purple-600">
                  {article.title}
             </div>
-            <div className='article-image'>
-
+            <div className='text-center'>
+                <img className='mx-auto w-4/6' alt='' src={article.image_url} width="300" /> 
             </div>
-                {article && <img alt='' src={article.image_url} width="300" /> }
-            <div className='article-content'>
-            
-                {article.content && <ReactMarkdown rehypePlugins={[rehypeRaw]} >{article.content}</ReactMarkdown>} 
+           
 
+             <div className='text-center  w-4/6 mx-auto text-xl my-6'>
+                <ReactMarkdown rehypePlugins={[rehypeRaw]} >
+                    {article.content}
+                </ReactMarkdown>
             </div>
-            
-            
         </div>
-    );
+    ) :
+     <LoadingSpinner/>
 }
 
 export default Article;
