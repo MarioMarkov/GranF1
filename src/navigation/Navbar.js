@@ -29,19 +29,22 @@ function Navbar() {
                 <Link to="/articles/all/true">Race Reviews</Link> 
                 <Link to="/articles/all/false">F1 Stories</Link> 
                 <Link to="/about">About</Link> 
-          <Link to="/add">Add Article</Link>
-          { user && <Button variant="primary" onClick={handleLogout}>
+                {process.env.NODE_ENV === 'development' ?
+                  <Link to="/add">Add Article</Link>: <></>
+                }
+          { process.env.NODE_ENV === 'development' & user ? <Button variant="primary" onClick={handleLogout}>
                     Log out
-          </Button>}
-          {!user &&
+          </Button>:<></>}
+          {process.env.NODE_ENV === 'development' & !user ?
             <>
               <Link to="/signup">Sign Up</Link>
               <Link to="/login">Log In</Link>
 
             </>
-          }
-                
-          <span>User : { user && user.email}</span>
+          :<></>}
+          {process.env.NODE_ENV === 'development' & user ?
+            <span>User : {user.email}</span>
+          :<></>}
         </div>
             
           

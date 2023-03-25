@@ -4,6 +4,8 @@ import './Homepage.css';
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import { config } from './Constants';
+import LoadingSpinner from "./navigation/LoadingSpinner";
+
 
 const URL = config.url;
 
@@ -26,18 +28,20 @@ function Homepage() {
   }, []);
   
 
-    return (
+
+
+    return articles.length > 0 ? (
       
       <div className="main-content">
         
-        <Link to={articles.length > 0 ? `/articles/${articles[0]._id}` : "#"}
-          key={articles.length > 0 ? `/articles/${articles[0]._id}` : "#"}>
+        <Link to={ `/articles/${articles[0]._id}` }
+          key={`/articles/${articles[0]._id}`}>
         <div className='showcase'>
           <div className='picture'>
-            <img className='showcase-img' src={articles.length > 0 ?  articles[0].image_url: '#'}  alt="" />
+            <img className='showcase-img' src={articles[0].image_url}  alt="" />
           </div>
           <div className='title'>
-            {articles.length >0 ? articles[0].title : null}  
+            {articles[0].title }  
           </div>
         </div>
         </Link>
@@ -64,6 +68,8 @@ function Homepage() {
             
         </div>
       </div>
+    ): (
+      <LoadingSpinner />
     );
 }
 
