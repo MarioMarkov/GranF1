@@ -54,8 +54,8 @@ function Homepage() {
                   <div className="post-card">
                       <img className='article-img' src={article.image_url} alt='' />
                         <div className='card-text'>
-                          <p className='card-title'> { article.title }  </p>
-                          <p className='text-preview'>{ article.content.slice(0,60) + '...'  }</p>
+                          <p className='text-2xl font-semibold'> { article.title }  </p>
+                          <p className=''>{ article.content.slice(0,60) + '...'  }</p>
                         </div>
                         
                     </div>

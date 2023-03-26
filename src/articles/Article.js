@@ -36,15 +36,16 @@ function Article() {
                 <EditDeleteButtons article = {article}/>:
                 <></>
             }
-            <div className = "text-center text-7xl mb-3 border-purple-600">
+            {/* //rounded border-purple-600 border-r-[10px] border-r-[#6246ea] border-b-[10px] border-b-[#6246ea] border-solid */}
+            <div className = "text-center text-7xl ">
                  {article.title}
             </div>
-            <div className='text-center'>
-                <img className='mx-auto w-4/6' alt='' src={article.image_url} width="300" /> 
+            <div className='text-center p-3  '>
+                <img className='mx-auto w-5/6' alt='' src={article.image_url} width="300" /> 
             </div>
            
 
-             <div className='text-center  w-4/6 mx-auto text-xl my-6'>
+             <div className='text-center   mx-auto text-xl my-6'>
                 <ReactMarkdown rehypePlugins={[rehypeRaw]} >
                     {article.content}
                 </ReactMarkdown>

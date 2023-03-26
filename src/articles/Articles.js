@@ -38,7 +38,7 @@ function Articles() {
                           <div className="post-card">
                               <img className='article-img' src={article.image_url} alt='' />
                                 <div className='card-text'>
-                                  <h3><p> { article.title }  </p></h3>
+                                  <p className='text-2xl font-semibold'> { article.title }  </p>
                                   <p>{ article.content.slice(0,40) + '...'  }</p>
                                 </div>
                                 
