@@ -55,7 +55,6 @@ function AddArticle() {
         
     }
 
-
     const handleSubmit = (e) => { 
         e.preventDefault()
         if (!file) { 

@@ -107,17 +107,16 @@ function EditArticle() {
                         
             </div>
             <div className="col-75">
-            <input defaultValue={article.title} onChange={e => setState({ ...state, [e.target.name]: e.target.value })}
+            <textarea rows={1} defaultValue={article.title} onChange={e => setState({ ...state, [e.target.name]: e.target.value })}
                         type="text" name="title" />
             </div>
         </div>
-       
         <div className="row">
             <div className="col-25">
             <label htmlFor="content">Content</label>
             </div>
             <div className="col-75">
-            <textarea onChange={e =>   setState({ ...state, [e.target.name]: e.target.value })}
+            <textarea  onChange={e =>   setState({ ...state, [e.target.name]: e.target.value })}
                         defaultValue={article.content} type="text" name="content"  />  </div>
                 </div>
         <div className="row">

@@ -2,12 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: proxima-nova, sans-serif;
 }
-
 
 body{
   background-color: #fffffe;
-
   color: #2b2c34;
   font-family: proxima-nova, sans-serif;
 }

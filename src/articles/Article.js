@@ -7,9 +7,8 @@ import rehypeRaw from "rehype-raw";
 import { config } from '../Constants';
 import EditDeleteButtons from './EditDeleteButtons';
 import LoadingSpinner from '../navigation/LoadingSpinner';
+
 const URL = config.url;
-
-
 
 function Article() {
 
@@ -30,22 +29,24 @@ function Article() {
     }, [params.articleId])
 
    
-    return article ? (
-        <div className='flex flex-col w-5/6 mx-auto'>
+    return article.content ? (
+        <div className='flex flex-col w-9/12 mx-auto'>
             {process.env.NODE_ENV === 'development' ?
                 <EditDeleteButtons article = {article}/>:
                 <></>
             }
             {/* //rounded border-purple-600 border-r-[10px] border-r-[#6246ea] border-b-[10px] border-b-[#6246ea] border-solid */}
-            <div className = "text-center text-7xl ">
-                 {article.title}
+            <div className = "text-center text-7xl mx-auto w-9/12 font-bold mb-8 underline decoration-[#6246ea] leading-[1.3]">
+            <ReactMarkdown rehypePlugins={[rehypeRaw]} >
+                    {article.title}
+                </ReactMarkdown>
             </div>
-            <div className='text-center p-3  '>
-                <img className='mx-auto w-5/6' alt='' src={article.image_url} width="300" /> 
+            <div className='text-center '>
+                <img className='mx-auto w-9/12 rounded-md' alt='Article image' src={article.image_url}/> 
             </div>
            
 
-             <div className='text-center   mx-auto text-xl my-6'>
+             <div className=' mx-auto text-xl my-6 w-9/12 text-[1.3rem] font-medium leading-[1.8] '>
                 <ReactMarkdown rehypePlugins={[rehypeRaw]} >
                     {article.content}
                 </ReactMarkdown>

@@ -32,17 +32,20 @@ function Homepage() {
 
     return articles.length > 0 ? (
       
-      <div className="main-content">
+      <div className="w-4/5 overflow-auto m-auto p-2.5 ">
         
         <Link to={ `/articles/${articles[0]._id}` }
           key={`/articles/${articles[0]._id}`}>
-        <div className='showcase'>
-          <div className='picture'>
-            <img className='showcase-img' src={articles[0].image_url}  alt="" />
-          </div>
-          <div className='title'>
+        <div className='h-[25rem] flex justify-between shadow-[0_5px_8px_0_rgba(0,0,0,0.2)] mb-[5%] rounded-[10px] border-r-[10px] border-r-[#6246ea] border-b-[10px] border-b-[#6246ea] border-solid hover:shadow-[0_8px_15px_0_rgba(0,0,0,0.2)]'>
+        
+        <div className='text-[3.5rem] leading-[1.15] font-bold p-10'>
             {articles[0].title }  
           </div>
+
+        <div className='picture'>
+            <img className='showcase-img' src={articles[0].image_url}  alt="" />
+        </div>
+          
         </div>
         </Link>
         <div className="grid-container">

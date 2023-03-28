@@ -21,7 +21,7 @@ function App() {
       <UserAuthContextProvider>
       <BrowserRouter>
       <Navbar></Navbar>
-        <Routes>
+        <Routes >
           
           <Route path="/" element={<Homepage />} />
           <Route path="articles/all/:raceReviews" element={<Articles />} />

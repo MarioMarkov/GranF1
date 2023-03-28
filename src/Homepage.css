@@ -1,12 +1,3 @@
-/* Wrapper for whole page */
-.main-content{
-  width: 90%;
-  padding: 10px;
-  margin: auto;
-  background-color: white;
-  border-radius: 10px;
-  overflow: auto;
-}
 
 /* For First article */
 .showcase{
@@ -28,7 +19,7 @@
   font-size: 4rem;
   padding: 10px;
   font-weight: 600;
-  float: right;
+  float: left;
 }
 
 /* For first article image */
