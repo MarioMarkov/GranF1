@@ -36,7 +36,7 @@ function Article() {
                 <></>
             }
             {/* //rounded border-purple-600 border-r-[10px] border-r-[#6246ea] border-b-[10px] border-b-[#6246ea] border-solid */}
-            <div className = "text-center text-7xl mx-auto w-9/12 font-bold mb-8 underline decoration-[#6246ea] leading-[1.3]">
+            <div className = "text-center text-7xl mx-auto w-9/12 font-bold mb-8 underline decoration-purple leading-[1.3]">
             <ReactMarkdown rehypePlugins={[rehypeRaw]} >
                     {article.title}
                 </ReactMarkdown>

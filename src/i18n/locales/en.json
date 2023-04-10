@@ -1,4 +1,9 @@
 {
     "home": "Home",
-    "race_reviews": "Race reviews"
+    "race_reviews": "Race reviews",
+    "f1_stories": "F1 Stories",
+    "about": "About",
+    "sign_up": "Sign Up",
+    "log_in": "Log In",
+    "add_article": "Add Article"
 }
