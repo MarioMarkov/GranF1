@@ -30,7 +30,7 @@ function Homepage() {
 
     return articles.length > 0 ? (
       
-      <div className="w-4/5 overflow-auto m-auto p-2.5 ">
+      <div className="w-4/5 overflow-auto m-auto px-2.5 ">
         
         <Link to={ `/articles/${articles[0]._id}` }
           key={`/articles/${articles[0]._id}`}>
@@ -46,16 +46,16 @@ function Homepage() {
           
         </div>
         </Link>
-        <div className="grid grid-cols-[1fr_1fr_1fr] gap-x-12 gap-y-[3em]">
+        <div className="grid grid-cols-[1fr_1fr_1fr] gap-x-10  gap-y-[2em] mb-10">
           {articles.length > 1 ? articles.slice(1).map(article => { 
             return (
               <div className="text-center shadow-[0_5px_8px_0_rgba(0,0,0,0.2)] transition-[0.4s] rounded-lg border-b-[10px] border-b-purple border-solid hover:shadow-[0_8px_16px_0_rgba(0,0,0,0.2)]" key={ article._id}>
               <Link to={`/articles/${article._id}`} key={ article._id}>
 
                 <div >
-                    <img className='w-full h-[250px] object-cover rounded-t-lg' src={article.image_url} alt='' />
-                      <div  className='p-3'>
-                        <p className='text-2xl font-semibold'> { article.title }  </p>
+                    <img className='w-full h-[230px] object-cover rounded-t-lg' src={article.image_url} alt='' />
+                      <div  className='p-2'>
+                        <p className='text-xl font-semibold'> { article.title }  </p>
                         <p>{ article.content.slice(0,40) + '...'  }</p>
                       </div>
                       
