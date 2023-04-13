@@ -9,7 +9,8 @@ import { Gb, Bg } from "react-flags-select";
 
 function Navbar() {
 
-  const [mobileMenu, setMobileMenu] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const genericHamburgerLine = `h-1 w-6 my-1 rounded-full bg-black transition ease transform duration-300`;
 
   // Getting current location in url
   const location = useLocation();
@@ -91,21 +92,44 @@ function Navbar() {
           </div>  
         </div>
                 
-          <button onClick={() => {console.log(mobileMenu); setMobileMenu(true)}}  id="hamburger-button" className='md:hidden cursor-pointer float-right'>
-                &#9776;
-          </button>
+        <button
+      className="flex flex-col h-10 w-10  rounded justify-center items-center group float-right"
+      onClick={() => setIsOpen(!isOpen)}
+    >
+      <div
+        className={`${genericHamburgerLine} ${
+          isOpen
+            ? "rotate-45 translate-y-3 opacity-50 group-hover:opacity-100"
+            : "opacity-50 group-hover:opacity-100"
+        }`}
+      />
+      <div
+        className={`${genericHamburgerLine} ${
+          isOpen ? "opacity-0" : "opacity-50 group-hover:opacity-100"
+        }`}
+      />
+      <div
+        className={`${genericHamburgerLine} ${
+          isOpen
+            ? "-rotate-45 -translate-y-3 opacity-50 group-hover:opacity-100"
+            : "opacity-50 group-hover:opacity-100"
+        }`}
+      />
+    </button>
         </div>
-        {mobileMenu==true &&
+        {isOpen==true &&
           <section id='mobile-menu' 
-        className={' text-white absolute top-0 bg-purple opacity-90 w-full text-5xl  flex-col justify-content-center origin-top animate-open-menu ' }>
-          <button className="text-8xl float-right self-end px-10" onClick={() => {console.log(mobileMenu); setMobileMenu(false)}}>
-            &times;
-          </button>
+        className={'z-1000000 text-white absolute top-68 bg-purple opacity-95 w-full text-5xl  flex-col justify-content-center origin-top animate-open-menu ' }>
+          
           <nav aria-label='mobile' className="flex flex-col w-full min-h-screen items-center opacity-100">
-              <a href="" className='w-full text-center hover:opacity-90 text-white py-8'>Test</a>
-              <a href="" className='w-full text-center hover:opacity-90 text-white py-8'>Test</a>
-              <a href="" className='w-full text-center hover:opacity-90 text-white py-8'>Test</a>
-              <a href="" className='w-full text-center hover:opacity-90 text-white py-8'>Test</a>
+                <Link className={"w-full text-center hover:opacity-90 text-white py-8 " + (url === "/" ? "  border-b-[3px] border-b-white border-t-[3px] border-t-white" : "")} to="/">{t('home')}</Link> 
+                <Link className={"w-full text-center hover:opacity-90 text-white py-8" + (url === "/articles/all/true" ? "  border-b-[3px] border-b-white border-t-[3px] border-t-white" : "")}   to="/articles/all/true">{t('race_reviews')}</Link> 
+                <Link className={"w-full text-center hover:opacity-90 text-white py-8" + (url === "/articles/all/false" ? "  border-b-[3px] border-b-white border-t-[3px] border-t-white" : "")}  to="/articles/all/false">{t('f1_stories')}</Link> 
+                <Link className={"w-full text-center hover:opacity-90 text-white py-8" + (url === "/about" ? " border-b-[3px] border-b-white border-t-[3px] border-t-white" : "")}  to="/about">{t('about')}</Link> 
+                
+                {process.env.NODE_ENV === 'development' ?
+                  <Link className={"w-full text-center hover:opacity-90 text-white py-8" + (url === "/add" ? " border-b-[3px] border-b-white border-t-[3px] border-t-white" : "")}  to="/add">{t('add_article')}</Link>: <></>
+                }
 
           </nav>
         </section>
