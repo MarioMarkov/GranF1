@@ -29,23 +29,24 @@ function Article() {
 
    
     return article.content ? (
-        <div className='flex flex-col xl:w-9/12 xl:mx-auto mx-7'>
-            {process.env.NODE_ENV === 'development' ?
-                <EditDeleteButtons className = 'float-right' article = {article}/>:
-                <></>
-            }
+        <div className='flex flex-col  w-[70%] mx-auto'>
+            {process.env.NODE_ENV === 'development' &&
+                <div className='self-end'>
+                <EditDeleteButtons article = {article}/>
+                </div>
+            }   
             {/* //rounded border-purple-600 border-r-[10px] border-r-[#6246ea] border-b-[10px] border-b-[#6246ea] border-solid */}
-            <div className = "text-center xl:text-7xl xl:mx-auto xl:w-9/12 font-bold mb-8 underline decoration-purple leading-[1.3] text-3xl">
+            <div className = "text-center md:text-7xl  font-bold mb-8 underline decoration-purple leading-[1.3] text-3xl">
             <ReactMarkdown rehypePlugins={[rehypeRaw]} >
                     {article.title}
                 </ReactMarkdown>
             </div>
-            <div className='text-center '>
-                <img className='xl:mx-auto xl:w-9/12 rounded-md mb-8' alt='Article image' src={article.image_url}/> 
+            <div className=''>
+                <img className='object-cover rounded-md mb-6 ' alt='Article image' src={article.image_url}/> 
             </div>
            
 
-             <div className='xl:mx-auto xl:my-6 xl:w-9/12 xl:text-[20px] text-[18px] font-medium leading-[1.7] '>
+             <div className=' text-[18px] md:text-[20px] md:my-6 font-medium leading-[1.7]'>
                 <ReactMarkdown rehypePlugins={[rehypeRaw]} >
                     {article.content}
                 </ReactMarkdown>

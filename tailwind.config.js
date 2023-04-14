@@ -3,8 +3,10 @@ const colors = require('tailwindcss/colors')
 
 
 module.exports = {
+  
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
+    './node_modules/flowbite/**/*.{js,jsx,ts,tsx}'
   ],
   theme: {
     screens: {
@@ -39,5 +41,7 @@ module.exports = {
         'open-menu': 'open-menu 0.5s ease-in-out forwards'
       }
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')
+  ],
 }
