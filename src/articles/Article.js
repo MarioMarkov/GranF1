@@ -29,20 +29,19 @@ function Article() {
 
    
     return article.content ? (
-        <div className='flex flex-col  w-[70%] mx-auto'>
+        <div className='flex flex-col md:w-[70%] w-[90%] mx-auto '>
             {process.env.NODE_ENV === 'development' &&
                 <div className='self-end'>
-                <EditDeleteButtons article = {article}/>
+                <EditDeleteButtons article = {article} URL = {URL}/>
                 </div>
             }   
-            {/* //rounded border-purple-600 border-r-[10px] border-r-[#6246ea] border-b-[10px] border-b-[#6246ea] border-solid */}
             <div className = "text-center md:text-7xl  font-bold mb-8 underline decoration-purple leading-[1.3] text-3xl">
             <ReactMarkdown rehypePlugins={[rehypeRaw]} >
                     {article.title}
                 </ReactMarkdown>
             </div>
             <div className=''>
-                <img className='object-cover rounded-md mb-6 ' alt='Article image' src={article.image_url}/> 
+                <img className='object-cover rounded-md mb-6 ' alt='Race highlight' src={article.image_url}/> 
             </div>
            
 

@@ -20,6 +20,10 @@ const articleSchema = mongoose.Schema({
     date: {
         type: Date,
         required: true 
+    },
+    public: {
+        type: Boolean,
+        required: true 
     }
 
 })

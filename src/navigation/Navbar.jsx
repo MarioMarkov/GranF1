@@ -75,7 +75,7 @@ function Navbar() {
               Gran F1
             </span>
           </Link>
-          {/* {process.env.NODE_ENV === "development" && (
+          {process.env.NODE_ENV === "development" && (
             <div className="flex md:order-2">
               <Link to="/add">
                 <button
@@ -86,7 +86,7 @@ function Navbar() {
                 </button>
               </Link>
             </div>
-          )} */}
+          )}
 
           <div className="md:order-3 text-3xl flex">
             <div className="flex gap-[10px]">

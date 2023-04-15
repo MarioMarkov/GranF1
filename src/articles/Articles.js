@@ -14,6 +14,11 @@ function Articles() {
         await fetch(`${URL}/api/articles/all/`.concat(params.raceReviews))
             .then(resp => resp.json())
             .then(data => { 
+                if(process.env.NODE_ENV === "production"){
+                    data = data.filter((article) => {
+                        return article.public === true
+                    })
+                }
                 setArticles(data.sort((a, b) => {
                     return new Date(b.date) - new Date(a.date);
                 }))
@@ -22,7 +27,7 @@ function Articles() {
 
     useEffect( () => {
         getArticles()
-    }, [params.raceReviews])  
+    }, [params.raceReviews,articles])  
 
     return articles.length >0 ? (
         <div className='w-[90%] mx-auto mb-10'>

@@ -41,7 +41,6 @@ function AddArticle() {
             (err) => console.log(err),
             () => { 
                 getDownloadURL(uploadTask.snapshot.ref).then((url) => { 
-                    console.log(url)
                     setState({ ...state, image_url: url })
                 })
             }
@@ -59,6 +58,7 @@ function AddArticle() {
         e.preventDefault()
         if (!file) { 
             alert("Please choose an image first!")
+            return;
         }
         addArticle({
             title: state.title,
@@ -124,7 +124,7 @@ function AddArticle() {
             <div className="col-75">
             <div>
                     <input type="file" onChange={handleChange} accept="" />
-                    <button type='button' onClick={handleUpload}>Upload to Firebase</button>
+                    <button  type="button" className='bg-purple rounded-md text-white p-4' onClick={handleUpload}>Upload to Firebase</button>
                     <p>{percent} "% done"</p>
 
             </div>

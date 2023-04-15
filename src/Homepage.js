@@ -36,7 +36,7 @@ function Homepage() {
           key={`/articles/${articles[0]._id}`} className=''>
         <div className='md:h-[25rem] md:flex  md:justify-between shadow-[0_5px_8px_0_rgba(0,0,0,0.2)] rounded-[10px] border-r-[10px] border-r-purple border-b-[10px] border-b-purple border-solid hover:shadow-[0_8px_15px_0_rgba(0,0,0,0.2)]'>
         
-        <div className='text-3xl md:text-[3.5rem] leading-[1.15] font-bold p-10'>
+        <div className='text-3xl md:text-6xl leading-[1.4] font-bold p-8 md:px-9 md:pt-10  break-words'>
             { articles[0].title }  
         </div>
 

@@ -40,7 +40,8 @@ router.post("/articles", async (req, res) => {
     content: req.body.content,
     image_url: req.body.image_url,
     race_review : req.body.race_review,
-    date : new Date()
+    date : new Date(),
+    public: false
   })
   await article.save()
   res.send(article)
@@ -66,6 +67,18 @@ router.post("/articles/edit/:id", async (req, res) => {
 router.delete("/articles/delete/:id", async (req, res) => {
   let article = await Article.deleteOne({ _id: req.params.id })
 
+  res.send(article)
+})
+
+
+// @desc Make article public
+// @route GET /api/articles/make_public/:id
+router.post("/articles/make_public/:status/:id", async (req, res) => {
+  const article = await Article.findById(req.params.id)
+  const status = (String(req.params.status).toLowerCase() === 'true')  
+  
+  article.public = status
+  await article.save()
   res.send(article)
 })
 
