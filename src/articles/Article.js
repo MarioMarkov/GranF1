@@ -9,7 +9,7 @@ import LoadingSpinner from '../navigation/LoadingSpinner';
 
 const URL = config.url;
 
-function Article() {
+function Article({lang}) {
 
     const params = useParams()
     const [article, setArticle] = useState({});
@@ -19,6 +19,7 @@ function Article() {
         async function fetchData() {
             await axios.get(`${URL}/api/articles/`.concat(params.articleId))
                 .then(response => {
+                    console.log(response)
                     setArticle(response.data)
                 })
                 .catch((err) => console.log(err));
@@ -28,7 +29,7 @@ function Article() {
     }, [params.articleId])
 
    
-    return article.content ? (
+    return article ? (
         <div className='flex flex-col md:w-[70%] w-[90%] mx-auto '>
             {process.env.NODE_ENV === 'development' &&
                 <div className='self-end'>
@@ -37,7 +38,7 @@ function Article() {
             }   
             <div className = "text-center md:text-7xl  font-bold mb-8 underline decoration-purple leading-[1.3] text-3xl">
             <ReactMarkdown rehypePlugins={[rehypeRaw]} >
-                    {article.title}
+                    {lang ==="en" ? article.en_title : article.bg_title }
                 </ReactMarkdown>
             </div>
             <div className=''>
@@ -47,7 +48,7 @@ function Article() {
 
              <div className=' text-[18px] md:text-[20px] md:my-6 font-medium leading-[1.7]'>
                 <ReactMarkdown rehypePlugins={[rehypeRaw]} >
-                    {article.content}
+                    {lang ==="en" ? article.en_content : article.bg_content }
                 </ReactMarkdown>
             </div>
         </div>

@@ -7,7 +7,8 @@ import { useTranslation } from "react-i18next";
 import Hamburger from "./Hamburger";
 import { Gb, Bg } from "react-flags-select";
 import MobileNav from "./MobileNav";
-function Navbar() {
+
+function Navbar({ setLang }) {
   const [isOpen, setIsOpen] = useState(false);
 
   // Getting current location in url
@@ -27,8 +28,10 @@ function Navbar() {
 
   // Translation functions
   const { t, i18n } = useTranslation();
+
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
+    setLang(lang);
   };
 
   // Auth functions
@@ -72,7 +75,7 @@ function Navbar() {
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <Link to="/" className="flex items-center">
             <span className="self-center text-2xl font-semibold whitespace-nowrap ">
-              Gran F1
+              {t("gran_f1")}
             </span>
           </Link>
           {process.env.NODE_ENV === "development" && (
@@ -82,7 +85,7 @@ function Navbar() {
                   type="button"
                   className="text-white bg-purple  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0"
                 >
-                  Add Article
+                  {t("add_article")}
                 </button>
               </Link>
             </div>

@@ -1,6 +1,7 @@
 import './App.css';
 import Homepage from './Homepage';
 import Navbar from './navigation/Navbar';
+import { useState } from "react";
 import {
   BrowserRouter,
   Routes,
@@ -16,18 +17,20 @@ import Login from './auth/Login';
 import { UserAuthContextProvider } from "./context/UserAuthContext";
 
 function App() {
+  const [lang, setLang] = useState("en");
+  
   return (
     <div className="App">
       <UserAuthContextProvider>
       <BrowserRouter>
-      <Navbar></Navbar>
+      <Navbar lang={ lang } setLang = {setLang}></Navbar>
         <Routes >
           
-          <Route path="/" element={<Homepage />} />
-          <Route path="articles/all/:raceReviews" element={<Articles />} />
-          <Route path="about" element={<About />} />
-          <Route path="articles/:articleId" element={<Article />} />
-          <Route path="articles/edit/:articleId" element={<EditArticle />} />
+          <Route path="/" element={<Homepage lang={lang} />} />
+          <Route path="articles/all/:raceReviews" element={<Articles lang={lang}/>} />
+          <Route path="about" element={<About lang={lang}/>} />
+          <Route path="articles/:articleId" element={<Article lang={lang}/>} />
+          <Route path="articles/edit/:articleId" element={<EditArticle lang={lang}/>} />
           <Route path="add" element={<AddArticle />} />
           <Route path="signup" element={<SignUp />} />
           <Route path="login" element={<Login/>}/>

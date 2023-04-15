@@ -7,7 +7,7 @@ import LoadingSpinner from "./navigation/LoadingSpinner";
 
 const URL = config.url;
 
-function Homepage() {
+function Homepage({lang}) {
   const [articles, setArticles] = useState({});
 
   useEffect(() => {
@@ -15,7 +15,6 @@ function Homepage() {
     async function fetchArticles() { 
       await axios.get(`${URL}/api/articles/all`)
         .then(response => {
-        
           setArticles(response.data.sort((a, b) => { 
             return new Date(b.date) - new Date(a.date);
           }))
@@ -37,7 +36,7 @@ function Homepage() {
         <div className='md:h-[25rem] md:flex  md:justify-between shadow-[0_5px_8px_0_rgba(0,0,0,0.2)] rounded-[10px] border-r-[10px] border-r-purple border-b-[10px] border-b-purple border-solid hover:shadow-[0_8px_15px_0_rgba(0,0,0,0.2)]'>
         
         <div className='text-3xl md:text-6xl leading-[1.4] font-bold p-8 md:px-9 md:pt-10  break-words'>
-            { articles[0].title }  
+            { lang ==="en" ? articles[0].en_title : articles[0].bg_title }  
         </div>
 
         <img className='md:max-w-[35vw] md:h-full object-cover rounded-tl-[10px]' src={articles[0].image_url}  alt="" />
@@ -55,8 +54,8 @@ function Homepage() {
                 <div >
                     <img className='w-full h-[230px] object-cover rounded-t-lg' src={article.image_url} alt='' />
                       <div  className='p-2'>
-                        <p className='text-lg md:text-xl font-semibold'> { article.title }  </p>
-                        <p className='text-base md:text-lg'>{ article.content.slice(0,40) + '...'  }</p>
+                        <p className='text-lg md:text-xl font-semibold'> { lang ==="en" ? article.en_title : article.bg_title }  </p>
+                        <p className='text-base md:text-lg'>{ lang ==="en" ? article.en_content.slice(0,40): article.bg_content.slice(0,40) + '...'  }</p>
                       </div>
                       
                   </div>

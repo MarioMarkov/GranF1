@@ -6,7 +6,7 @@ import LoadingSpinner from "../navigation/LoadingSpinner";
 
 const URL = config.url;
 
-function Articles() {
+function Articles({lang}) {
     const params = useParams();
     const [articles, setArticles] = useState([]);
 
@@ -42,8 +42,8 @@ function Articles() {
                           <div>
                               <img className='w-full h-[230px] object-cover rounded-t-lg' src={article.image_url} alt='' />
                                 <div className='p-3'>
-                                  <p className='text-2xl font-semibold'> { article.title }  </p>
-                                  <p>{ article.content.slice(0,40) + '...'  }</p>
+                                  <p className='text-2xl font-semibold'> { lang ==="en" ? article.en_title : article.bg_title}  </p>
+                                  <p>{ lang ==="en" ? article.en_content.slice(0,40):article.bg_content.slice(0,40)  + '...'  }</p>
                                 </div>
                                 
                             </div>
