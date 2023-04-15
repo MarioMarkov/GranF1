@@ -3,12 +3,11 @@ import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useUserAuth } from "../context/UserAuthContext";
 import { Button } from "react-bootstrap";
-import { useTranslation } from "react-i18next";
 import Hamburger from "./Hamburger";
 import { Gb, Bg } from "react-flags-select";
 import MobileNav from "./MobileNav";
 
-function Navbar({ setLang }) {
+function Navbar({ setLang, t, i18n }) {
   const [isOpen, setIsOpen] = useState(false);
 
   // Getting current location in url
@@ -27,11 +26,9 @@ function Navbar({ setLang }) {
   }, [location]);
 
   // Translation functions
-  const { t, i18n } = useTranslation();
 
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
-    setLang(lang);
   };
 
   // Auth functions

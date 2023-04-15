@@ -15,22 +15,22 @@ import AddArticle from './articles/AddArticle';
 import SignUp from './auth/SignUp.js';
 import Login from './auth/Login';
 import { UserAuthContextProvider } from "./context/UserAuthContext";
+import { useTranslation } from "react-i18next";
 
 function App() {
-  const [lang, setLang] = useState("en");
-  
+  const { t, i18n } = useTranslation();
   return (
     <div className="App">
       <UserAuthContextProvider>
       <BrowserRouter>
-      <Navbar lang={ lang } setLang = {setLang}></Navbar>
+      <Navbar  t ={t} i18n = {i18n}></Navbar>
         <Routes >
           
-          <Route path="/" element={<Homepage lang={lang} />} />
-          <Route path="articles/all/:raceReviews" element={<Articles lang={lang}/>} />
-          <Route path="about" element={<About lang={lang}/>} />
-          <Route path="articles/:articleId" element={<Article lang={lang}/>} />
-          <Route path="articles/edit/:articleId" element={<EditArticle lang={lang}/>} />
+          <Route path="/" element={<Homepage i18n={i18n} />} />
+          <Route path="articles/all/:raceReviews" element={<Articles i18n={i18n}/>} />
+          <Route path="about" element={<About i18n={i18n}/>} />
+          <Route path="articles/:articleId" element={<Article i18n={i18n}/>} />
+          <Route path="articles/edit/:articleId" element={<EditArticle />} />
           <Route path="add" element={<AddArticle />} />
           <Route path="signup" element={<SignUp />} />
           <Route path="login" element={<Login/>}/>

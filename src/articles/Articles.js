@@ -6,7 +6,7 @@ import LoadingSpinner from "../navigation/LoadingSpinner";
 
 const URL = config.url;
 
-function Articles({lang}) {
+function Articles({ i18n }) {
     const params = useParams();
     const [articles, setArticles] = useState([]);
 
@@ -18,6 +18,7 @@ function Articles({lang}) {
                     data = data.filter((article) => {
                         return article.public === true
                     })
+
                 }
                 setArticles(data.sort((a, b) => {
                     return new Date(b.date) - new Date(a.date);
@@ -27,7 +28,7 @@ function Articles({lang}) {
 
     useEffect( () => {
         getArticles()
-    }, [params.raceReviews,articles])  
+    }, [params.raceReviews])  
 
     return articles.length >0 ? (
         <div className='w-[90%] mx-auto mb-10'>
@@ -42,8 +43,8 @@ function Articles({lang}) {
                           <div>
                               <img className='w-full h-[230px] object-cover rounded-t-lg' src={article.image_url} alt='' />
                                 <div className='p-3'>
-                                  <p className='text-2xl font-semibold'> { lang ==="en" ? article.en_title : article.bg_title}  </p>
-                                  <p>{ lang ==="en" ? article.en_content.slice(0,40):article.bg_content.slice(0,40)  + '...'  }</p>
+                                  <p className='text-2xl font-semibold'> { i18n.language ==="en" ? article.en_title : article.bg_title}  </p>
+                                  <p>{ i18n.language ==="en" ? article.en_content.slice(0,40):article.bg_content.slice(0,40)  + '...'  }</p>
                                 </div>
                                 
                             </div>

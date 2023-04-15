@@ -47,7 +47,6 @@ router.post("/articles", async (req, res) => {
     date : new Date(),
     public: false
   })
-  console.log(article)
   await article.save()
   res.send(article)
 })

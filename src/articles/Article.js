@@ -9,7 +9,7 @@ import LoadingSpinner from '../navigation/LoadingSpinner';
 
 const URL = config.url;
 
-function Article({lang}) {
+function Article({i18n}) {
 
     const params = useParams()
     const [article, setArticle] = useState({});
@@ -19,7 +19,6 @@ function Article({lang}) {
         async function fetchData() {
             await axios.get(`${URL}/api/articles/`.concat(params.articleId))
                 .then(response => {
-                    console.log(response)
                     setArticle(response.data)
                 })
                 .catch((err) => console.log(err));
@@ -29,7 +28,7 @@ function Article({lang}) {
     }, [params.articleId])
 
    
-    return article ? (
+    return article.image_url ? (
         <div className='flex flex-col md:w-[70%] w-[90%] mx-auto '>
             {process.env.NODE_ENV === 'development' &&
                 <div className='self-end'>
@@ -38,7 +37,7 @@ function Article({lang}) {
             }   
             <div className = "text-center md:text-7xl  font-bold mb-8 underline decoration-purple leading-[1.3] text-3xl">
             <ReactMarkdown rehypePlugins={[rehypeRaw]} >
-                    {lang ==="en" ? article.en_title : article.bg_title }
+                    {i18n.language ==="en" ? article.en_title : article.bg_title }
                 </ReactMarkdown>
             </div>
             <div className=''>
@@ -48,7 +47,7 @@ function Article({lang}) {
 
              <div className=' text-[18px] md:text-[20px] md:my-6 font-medium leading-[1.7]'>
                 <ReactMarkdown rehypePlugins={[rehypeRaw]} >
-                    {lang ==="en" ? article.en_content : article.bg_content }
+                    {i18n.language ==="en" ? article.en_content : article.bg_content }
                 </ReactMarkdown>
             </div>
         </div>
