@@ -1,14 +1,24 @@
-# Use the official Node.js image as the base image
-FROM node:19
+# syntax=docker/dockerfile:1
 
-# Set the working directory in the container
-WORKDIR /app
+# Start your image with a node base image
+FROM node:18
 
-# Copy the application files into the working directory
-COPY . /app
+# Create app directory
+WORKDIR /usr/src/app
 
-# Install the application dependencies
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
+
 RUN npm install
+# If you are building your code for production
+# RUN npm ci --omit=dev
 
-# Define the entry point for the container
-CMD ["npm", "run","server"]
+# Bundle app source
+COPY . .
+
+EXPOSE 6000
+
+CMD [ "npm","run","server" ]
+
