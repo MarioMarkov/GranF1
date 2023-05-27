@@ -1,16 +1,11 @@
 import { React } from "react";
 
-function About() {
+function About({ setLang, t, i18n }) {
   return (
     <div className="w-[90%] md:w-[50%] m-auto text-lg border-4 border-purple p-4">
-      Hey, this is my personal blog, where I want to share my passion of Formula
-      1 with you. <br />
-      Currently Formula 1 is not so popular in my country, so I want to share my
-      opinions about it with someone and hopefully you find it interesting. I am
-      working on implementing comments and many other features, so we can
-      discuss Formula 1 together, so stay tuned for that. <br />
+      {t("about_text")} <br />
       <br />
-      This site was build with: <br />
+      {t("about_text2")} <br />
       React Js as a Front End ⚛️ <br />
       Express Js with MongoDb as a Backend 🚂 <br />
       Firebase Storage for storage of files 📦 <br />

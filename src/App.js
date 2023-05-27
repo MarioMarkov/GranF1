@@ -28,7 +28,7 @@ function App() {
           
           <Route path="/" element={<Homepage i18n={i18n} />} />
           <Route path="articles/all/:raceReviews" element={<Articles i18n={i18n}/>} />
-          <Route path="about" element={<About i18n={i18n}/>} />
+          <Route path="about" element={<About i18n={i18n} t={t}/>} />
           <Route path="articles/:articleId" element={<Article i18n={i18n}/>} />
           <Route path="articles/edit/:articleId" element={<EditArticle />} />
           <Route path="add" element={<AddArticle />} />

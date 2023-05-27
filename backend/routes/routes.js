@@ -56,11 +56,17 @@ router.post("/articles", async (req, res) => {
 // @route GET /api/articles/edit/:id
 router.post("/articles/edit/:id", async (req, res) => {
   const article = await Article.findById(req.params.id)
-  
-  article.title =  req.body.title,  
-  article.content = req.body.content,
+
+  article.en_title =  req.body.en_title
+  article.bg_title =  req.body.bg_title,  
+
+  article.en_content = req.body.en_content
+  article.bg_content = req.body.bg_content
+
   article.image_url = req.body.image_url
-  article.race_review = req.body.race_review,
+  article.race_review = req.body.race_review
+
+  console.log(article)
 
   await article.save()
   res.send(article)

@@ -6,5 +6,8 @@
     "sign_up": "Sign Up",
     "login": "Log In",
     "add_article": "Add Article",
-    "gran_f1": "Gran F1"
+    "gran_f1": "Gran F1",
+    "about_text": "Hey, this is my personal blog, where I want to share my passion of Formula 1 with you. Currently Formula 1 is not so popular in my country, so I want to share my opinions about it with someone and hopefully you find it interesting. I am working on implementing comments and many other features, so we can discuss Formula 1 together, so stay tuned for that.",
+    "about_text2": "The site was made with: "
+
 }
