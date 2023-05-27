@@ -1,7 +1,7 @@
 import './App.css';
 import Homepage from './Homepage';
 import Navbar from './navigation/Navbar';
-import { useState } from "react";
+import { useEffect } from "react";
 import {
   BrowserRouter,
   Routes,
@@ -17,10 +17,17 @@ import Login from './auth/Login';
 import { UserAuthContextProvider } from "./context/UserAuthContext";
 import { useTranslation } from "react-i18next";
 
+
 function App() {
   const { t, i18n } = useTranslation();
+  function Example() {
+    useEffect(() => {
+      document.title = 'My Page Title';
+    }, []);
+  }
   return (
     <div className="App">
+
       <UserAuthContextProvider>
       <BrowserRouter>
       <Navbar  t ={t} i18n = {i18n}></Navbar>
