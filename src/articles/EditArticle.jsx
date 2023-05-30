@@ -91,8 +91,11 @@ function EditArticle() {
   };
 
   return (
-    <div className="container">
-      <form onSubmit={(e) => handleSubmit(e)}>
+    <div className="px-4">
+      <form
+        className="w-full p-4 bg-gray-100 rounded-md border-gray-200 border-2	"
+        onSubmit={(e) => handleSubmit(e)}
+      >
         <div className="row">
           <div className="col-25">
             <label htmlFor="en_title">English Title</label>

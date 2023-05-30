@@ -32,7 +32,7 @@ function Articles({ i18n }) {
 
     return articles.length >0 ? (
         <div className='w-[90%] mx-auto mb-10'>
-             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  md:gap-x-12 gap-y-[3em] w-[80%] md:w-[90%] mx-auto'>
+             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  md:gap-x-10 gap-y-[3em] w-[80%] md:w-[90%] mx-auto'>
                 {articles.map((article) => {
                    
                     return (
@@ -41,10 +41,10 @@ function Articles({ i18n }) {
                         <Link to={`/articles/${article._id}`} key={ article._id}>
         
                           <div>
-                              <img className='w-full h-[230px] object-cover rounded-t-lg' src={article.image_url} alt='' />
+                              <img className='w-full h-[220px] object-cover rounded-t-lg' src={article.image_url} alt='' />
                                 <div className='p-3'>
                                   <p className='text-2xl font-semibold'> { i18n.language ==="en" ? article.en_title : article.bg_title}  </p>
-                                  <p>{ i18n.language ==="en" ? article.en_content.slice(0,40):article.bg_content.slice(0,40)  + '...'  }</p>
+                                  {/* <p>{ i18n.language ==="en" ? article.en_content.slice(0,40):article.bg_content.slice(0,40)  + '...'  }</p> */}
                                 </div>
                                 
                             </div>
