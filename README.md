@@ -2,17 +2,17 @@
 
 ## Made with 
 React Js as a Front End ⚛️
----
+   
 Express Js with MongoDb as a Backend 🚂
----
+   
 Firebase Storage for storage of files 📦
----
+   
 Fireabse Authentication for authentication with custom e-mail or with google 🔥
----
+   
 react-i18next for localization 🇬🇧🇧🇬
----
+   
 Tailwind CSS for CSS 🍃
----
+   
 
 ### Back end env has
 MONGODB_CONNECTION_STRING, PORT, NODE_ENV
