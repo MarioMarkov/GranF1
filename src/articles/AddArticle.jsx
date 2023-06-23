@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import "./AddArticle.css";
 import { useNavigate } from "react-router-dom";
-import storage from "../fireBaseConfig.js";
+import storage from "../fireBaseConfig";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { redirect } from "react-router-dom";
 import ReactSwitch from "react-switch";

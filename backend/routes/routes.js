@@ -2,8 +2,6 @@ const express = require('express');
 const Article = require('../models/Article.js');
 const router = express.Router();
 
-
-
 // @desc Get all articles
 // @route GET /api/articles/all
 router.get('/articles/all', async (req, res) => {

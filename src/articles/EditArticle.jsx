@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./AddArticle.css";
 import { useNavigate } from "react-router-dom";
-import storage from "../fireBaseConfig.js";
+import storage from "../fireBaseConfig";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { redirect } from "react-router-dom";
 import ReactSwitch from "react-switch";
