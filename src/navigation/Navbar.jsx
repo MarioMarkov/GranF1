@@ -118,7 +118,7 @@ function Navbar({ setLang, t, i18n }) {
               </li>
               <li>
                 <Link
-                  to="articles/all/true"
+                  to={`articles/all/${true}`}
                   className={
                     "block py-2 pl-3 pr-4  hover:text-purple  md:p-0" +
                     (url === "/articles/all/true"
@@ -131,7 +131,7 @@ function Navbar({ setLang, t, i18n }) {
               </li>
               <li>
                 <Link
-                  to="/articles/all/false"
+                  to={`articles/all/${false}`}
                   className={
                     "block py-2 pl-3 pr-4  hover:text-purple  md:p-0" +
                     (url === "/articles/all/false"

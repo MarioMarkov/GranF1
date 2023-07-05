@@ -1,29 +1,17 @@
-import React, { useState, useEffect, useReducer, useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "./navigation/LoadingSpinner";
-import { getArticles } from "./helpers";
-import { data } from "autoprefixer";
-import {
-  ArticlesContext,
-  ArticlesDispatchContext,
-} from "./context/ArticleContext";
+
+import { useAPI } from "./context/ApiContext";
 
 function Homepage({ i18n }) {
-  const [articles, setArticles] = useState({});
-  const articlesFromContext = useContext(ArticlesContext).then((data) =>
-    setArticles(data)
-  );
-
-  useEffect(() => {
-    // Getting all articles
-    console.log("useEffect");
-  }, []);
+  const { articles } = useAPI();
 
   return articles.length > 0 ? (
     <div className="w-4/5 mx-auto px-2.5 leading-[1.4] tracking-[-.05em]	">
       <Link
         to={`/articles/${articles[0]._id}`}
-        key={`/articles/${articles[0]._id}`}
+        key={`${articles[0]._id}`}
         className=""
       >
         <div className="md:h-[25rem] md:flex md:justify-between shadow-[0_5px_8px_0_rgba(0,0,0,0.2)] rounded-[10px] border-r-[10px] border-r-purple border-b-[10px] border-b-purple border-solid hover:shadow-[0_8px_15px_0_rgba(0,0,0,0.2)]">

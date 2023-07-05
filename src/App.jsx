@@ -9,25 +9,15 @@ import EditArticle from "./articles/EditArticle";
 import AddArticle from "./articles/AddArticle";
 import Homepage from "./Homepage";
 import { useTranslation } from "react-i18next";
-import { useReducer } from "react";
-import { getArticles } from "./helpers";
-import {
-  ArticlesContext,
-  ArticlesDispatchContext,
-} from "./context/ArticleContext";
-import articlesReducer from "./context/ArticleReducer";
-
-const initialArticles = getArticles().then((data) => data);
-
+import { APIContextProvider } from "./context/ApiContext";
 
 function App() {
   const { t, i18n } = useTranslation();
-  const [articles, dispatch] = useReducer(articlesReducer, initialArticles);
 
   return (
     <div className="App">
       {/* <UserAuthContextProvider> */}
-      <ArticlesContext.Provider value={articles}>
+      <APIContextProvider>
         <BrowserRouter>
           <Navbar t={t} i18n={i18n}></Navbar>
           <Routes>
@@ -48,7 +38,7 @@ function App() {
             <Route path="login" element={<Login />} /> */}
           </Routes>
         </BrowserRouter>
-      </ArticlesContext.Provider>
+      </APIContextProvider>
       {/* </UserAuthContextProvider> */}
     </div>
   );
