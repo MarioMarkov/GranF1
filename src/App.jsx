@@ -1,5 +1,5 @@
+import React from "react";
 import "./App.css";
-import Homepage from "./Homepage";
 import Navbar from "./navigation/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import About from "./About";
@@ -7,17 +7,27 @@ import Article from "./articles/Article";
 import Articles from "./articles/Articles";
 import EditArticle from "./articles/EditArticle";
 import AddArticle from "./articles/AddArticle";
-import SignUp from "./auth/SignUp.js";
-import Login from "./auth/Login";
-import { UserAuthContextProvider } from "./context/UserAuthContext";
+import Homepage from "./Homepage";
 import { useTranslation } from "react-i18next";
+import { useReducer } from "react";
+import { getArticles } from "./helpers";
+import {
+  ArticlesContext,
+  ArticlesDispatchContext,
+} from "./context/ArticleContext";
+import articlesReducer from "./context/ArticleReducer";
+
+const initialArticles = getArticles().then((data) => data);
+
 
 function App() {
   const { t, i18n } = useTranslation();
+  const [articles, dispatch] = useReducer(articlesReducer, initialArticles);
 
   return (
     <div className="App">
-      <UserAuthContextProvider>
+      {/* <UserAuthContextProvider> */}
+      <ArticlesContext.Provider value={articles}>
         <BrowserRouter>
           <Navbar t={t} i18n={i18n}></Navbar>
           <Routes>
@@ -34,11 +44,12 @@ function App() {
             />
             <Route path="articles/edit/:articleId" element={<EditArticle />} />
             <Route path="add" element={<AddArticle />} />
-            <Route path="signup" element={<SignUp />} />
-            <Route path="login" element={<Login />} />
+            {/* <Route path="signup" element={<SignUp />} />
+            <Route path="login" element={<Login />} /> */}
           </Routes>
         </BrowserRouter>
-      </UserAuthContextProvider>
+      </ArticlesContext.Provider>
+      {/* </UserAuthContextProvider> */}
     </div>
   );
 }

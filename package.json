@@ -28,7 +28,6 @@
     "react-navigation": "^4.4.4",
     "react-router-dom": "^6.4.0",
     "react-scripts": "5.0.1",
-    "react-switch": "^7.0.0",
     "rehype-raw": "^6.1.1",
     "use-state-with-callback": "^3.0.2",
     "uuid": "^9.0.0",
@@ -38,7 +37,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "(cd backend && npm run start) & npm run start"
   },
   "eslintConfig": {
     "extends": [

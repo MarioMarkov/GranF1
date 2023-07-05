@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import storage from "../fireBaseConfig";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { redirect } from "react-router-dom";
-import ReactSwitch from "react-switch";
+
 import { config } from "../Constants";
 
 const URL = config.url;
@@ -44,10 +44,6 @@ function EditArticle() {
     console.log(state);
     await axios.post(`${URL}/api/articles/edit/${state._id}`, state);
   };
-
-  function handleChange(event) {
-    setFile(event.target.files[0]);
-  }
 
   function handleUpload() {
     if (!file) {
@@ -170,9 +166,12 @@ function EditArticle() {
             <label htmlFor="race_review">Race Review</label>
           </div>
           <div className="col-75">
-            <ReactSwitch
+            <input
+              type="checkbox"
               checked={state.race_review}
-              onChange={(e) => setState({ ...state, race_review: e })}
+              onChange={() =>
+                setState({ ...state, race_review: !state.race_review })
+              }
             />
           </div>
         </div>

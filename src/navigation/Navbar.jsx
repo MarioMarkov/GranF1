@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useNavigate } from "react-router";
-import { useUserAuth } from "../context/UserAuthContext";
-import { Button } from "react-bootstrap";
 import Hamburger from "./Hamburger";
 import { Gb, Bg } from "react-flags-select";
 import MobileNav from "./MobileNav";
@@ -15,10 +12,7 @@ function Navbar({ setLang, t, i18n }) {
 
   // Variable to store the current location url
   const [url, setUrl] = useState(null);
-  const { logOut, user } = useUserAuth();
-
-  // Navigate to redirect after a log out
-  const navigate = useNavigate();
+  //const { logOut, user } = useUserAuth();
 
   // Setting url variable to the current url for the line below nav items
   useEffect(() => {
@@ -35,36 +29,36 @@ function Navbar({ setLang, t, i18n }) {
 
   // Function to render log in or sign up or log out depending if
   // a user is logged in
-  const renderAuthenticationUI = () => {
-    //console.log(user);
-    if (user) {
-      return (
-        <Button className="p-2.3 mx-2" variant="primary" onClick={handleLogout}>
-          Log out
-        </Button>
-      );
-    } else {
-      return (
-        <>
-          <Link className="p-2.3 mx-2" to="/signup">
-            {t("sign_up")}
-          </Link>
-          <Link className="p-2.3 mx-2" to="/login">
-            {t("login")}
-          </Link>
-        </>
-      );
-    }
-  };
+  // const renderAuthenticationUI = () => {
+  //   //console.log(user);
+  //   if (user) {
+  //     return (
+  //       <Button className="p-2.3 mx-2" variant="primary" onClick={handleLogout}>
+  //         Log out
+  //       </Button>
+  //     );
+  //   } else {
+  //     return (
+  //       <>
+  //         <Link className="p-2.3 mx-2" to="/signup">
+  //           {t("sign_up")}
+  //         </Link>
+  //         <Link className="p-2.3 mx-2" to="/login">
+  //           {t("login")}
+  //         </Link>
+  //       </>
+  //     );
+  //   }
+  // };
 
-  const handleLogout = async () => {
-    try {
-      await logOut();
-      navigate("/");
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  // const handleLogout = async () => {
+  //   try {
+  //     await logOut();
+  //     navigate("/");
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
 
   return (
     <div>
@@ -164,79 +158,6 @@ function Navbar({ setLang, t, i18n }) {
         </div>
       </nav>
 
-      {/* <div className=" text-[28px] h-[80px] text-center font-semibold mt-1   p-[13px]">
-        <div className="hover:animate-bounce inline float-left hover:pb-4 mb-10">
-          Gran F1
-        </div>
-        <div id="nav-items" className="hidden md:block">
-          <Link
-            className={
-              "p-2.3 mx-2 " +
-              (url === "/" ? "  border-b-[3px] border-b-purple" : "")
-            }
-            to="/"
-          >
-            {t("home")}
-          </Link>
-          <Link
-            className={
-              "p-2.3 mx-2" +
-              (url === "/articles/all/true"
-                ? "  border-b-[3px] border-b-purple"
-                : "")
-            }
-            to="/articles/all/true"
-          >
-            {t("race_reviews")}
-          </Link>
-          <Link
-            className={
-              "p-2.3 mx-2" +
-              (url === "/articles/all/false"
-                ? "  border-b-[3px] border-b-purple"
-                : "")
-            }
-            to="/articles/all/false"
-          >
-            {t("f1_stories")}
-          </Link>
-          <Link
-            className={
-              "p-2.3 mx-2" +
-              (url === "/about" ? " border-b-[3px] border-b-purple" : "")
-            }
-            to="/about"
-          >
-            {t("about")}
-          </Link>
-
-          {process.env.NODE_ENV === "development" ? (
-            <Link
-              className={
-                "p-2.3 mx-2" +
-                (url === "/add" ? " border-b-[3px] border-b-purple" : "")
-              }
-              to="/add"
-            >
-              {t("add_article")}
-            </Link>
-          ) : (
-            <></>
-          )}
-          {/* { process.env.NODE_ENV === 'development' && renderAuthenticationUI()} */}
-      {/* <div className="float-right">
-            <button>
-              <Gb onClick={() => changeLanguage("en")} className="inline"></Gb>
-            </button>{" "}
-            <button>
-              <Bg onClick={() => changeLanguage("bg")} className="inline"></Bg>
-            </button>
-          </div>
-        </div> */}
-
-      {/* Hamburger Button */}
-      {/* <Hamburger isOpen={isOpen} setIsOpen={setIsOpen} /> */}
-      {/* </div>*/}
       <MobileNav isOpen={isOpen} url={url} t={t}></MobileNav>
     </div>
   );
