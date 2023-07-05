@@ -1,8 +1,9 @@
 // Constants.js
 const production = {
-  url: 'https://granf1-production.up.railway.app'
+  url: "https://granf1.onrender.com",
 };
 const development = {
-  url: ''
+  url: "",
 };
-export const config = process.env.NODE_ENV === 'development' ? development : production;
+export const config =
+  process.env.NODE_ENV === "development" ? development : production;

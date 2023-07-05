@@ -1,19 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
 import "./AddArticle.css";
 import { useNavigate } from "react-router-dom";
 import storage from "../fireBaseConfig";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { redirect } from "react-router-dom";
-import { config } from "../Constants";
 
-const URL = config.url;
-
-function AddArticle() {
-  const navigate = useNavigate();
-
-  const [file, setFile] = useState("");
+function AddArticle({ onAddArticle }) {
   const [state, setState] = useState({
     en_title: "",
     bg_title: "",
@@ -22,7 +14,10 @@ function AddArticle() {
     image_url: "",
     race_review: false,
   });
+
+  const [file, setFile] = useState("");
   const [percent, setPercent] = useState(0);
+  const navigate = useNavigate();
 
   function handleUpload() {
     if (!file) {
@@ -43,7 +38,8 @@ function AddArticle() {
       (err) => console.log(err),
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          setState({ ...state, image_url: url });
+          state["image_url"] = url;
+          //setState({ ...state, image_url: url });
         });
       }
     );
@@ -55,26 +51,8 @@ function AddArticle() {
       alert("Please choose an image first!");
       return;
     }
-    addArticle({
-      en_title: state.en_title,
-      bg_title: state.bg_title,
-
-      en_content: state.en_content,
-      bg_content: state.bg_content,
-
-      image_url: state.image_url,
-      race_review: state.race_review,
-    });
-    redirect("/articles/all/true");
-    navigate("/articles/all/true");
-  };
-
-  const addArticle = async (article) => {
-    try {
-      await axios.post(`${URL}/api/articles`, article);
-    } catch (err) {
-      console.log(err);
-    }
+    onAddArticle(state);
+    navigate(`/articles/all/${state.race_review}`);
   };
 
   return (
