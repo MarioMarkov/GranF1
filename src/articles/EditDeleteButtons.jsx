@@ -1,36 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
-export default function EditDeleteButtons({ article, URL }) {
+export default function EditDeleteButtons({
+  changeStatus,
+  onDeleteArticle,
+  article,
+}) {
   const navigate = useNavigate();
 
   const deleteArticle = async (articleId) => {
     if (window.confirm("Are you sure!") === true) {
-      let result = await axios.delete(
-        `${URL}/api/articles/delete/${articleId}`
-      );
-      if (result) {
-        navigate("/");
-      }
-    } else {
-      return;
+      onDeleteArticle(articleId);
     }
+
+    navigate("/");
   };
 
   const changePublicStatus = async (articleId, status) => {
     if (window.confirm("Are you sure!") === true) {
-      let result = await axios.post(
-        `${URL}/api/articles/make_public/${status}/${articleId}`
-      );
-
-      if (result) {
-        navigate("/");
-      }
-    } else {
-      return;
+      changeStatus({articleId, status});
     }
+
+    navigate("/");
   };
 
   return (

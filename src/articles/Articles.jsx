@@ -6,7 +6,7 @@ import { useAPI } from "../context/ApiContext";
 
 function Articles({ i18n }) {
   const params = useParams();
-  var { articles } = useAPI();
+  const { articles } = useAPI();
 
   return articles.length > 0 ? (
     <div className="w-[90%] mx-auto mb-10 leading-[1.3]">

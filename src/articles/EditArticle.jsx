@@ -1,49 +1,37 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./AddArticle.css";
 import { useNavigate } from "react-router-dom";
 import storage from "../fireBaseConfig";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { redirect } from "react-router-dom";
+import { useAPI } from "../context/ApiContext";
 
-import { config } from "../Constants";
-
-const URL = config.url;
-
-function EditArticle() {
+function EditArticle({ onEditArticle }) {
   const params = useParams();
   const navigate = useNavigate();
-
   const [file, setFile] = useState("");
+  const [percent, setPercent] = useState(0);
+
+  const { articles } = useAPI();
 
   // Values set in the input fields
   const [state, setState] = useState({
-    title: "",
-    content: "",
+    _id: "",
+    en_title: "",
+    bg_title: "",
+    en_content: "",
+    bg_content: "",
     image_url: "",
     race_review: false,
   });
 
-  const [percent, setPercent] = useState(0);
-
   useEffect(() => {
-    async function fetchData() {
-      await axios
-        .get(`${URL}/api/articles/`.concat(params.articleId))
-        .then((response) => {
-          //setArticle(response.data);
-          setState(response.data);
-        })
-        .catch((err) => console.log(err));
-    }
-    fetchData();
+    articles.map((a) => {
+      if (a._id === params.articleId) {
+        setState(a);
+      }
+    });
   }, [params.articleId]);
-
-  const editArticle = async () => {
-    console.log(state);
-    await axios.post(`${URL}/api/articles/edit/${state._id}`, state);
-  };
 
   function handleUpload() {
     if (!file) {
@@ -76,14 +64,8 @@ function EditArticle() {
     if (!file) {
       alert("Please choose an image first!");
     }
-    await editArticle({
-      title: state.title,
-      content: state.content,
-      image_url: state.image_url,
-      race_review: state.race_review,
-    });
+    onEditArticle(state);
     navigate(`/articles/${state._id}`);
-    redirect(`/articles/${state._id}`);
   };
 
   return (

@@ -1,32 +1,58 @@
-const articlesReducer = (articles, action) => {
+import axios from "axios";
+import { config } from "../Constants";
+const URL = config.url;
+
+const articlesReducer = (article_state, action) => {
+  const article_props = action.payload;
+  
   switch (action.type) {
     case "added": {
-      return [
-        ...articles,
-        {
-          en_title: action.en_title,
-          bg_title: action.bg_title,
-          en_content: action.en_content,
-          bg_content: action.bg_content,
-          image_url: action.image_url,
-          race_review: action.race_review,
-        },
-      ];
-    }
-    case "changed": {
-      return articles.map((a) => {
-        if (a._id === action.article._id) {
-          return action.article;
-        } else {
-          return a;
+      const addArticle = async (article) => {
+        try {
+          await axios.post(`${URL}/api/articles`, article);
+        } catch (err) {
+          console.log(err);
         }
-      });
+      };
+      addArticle(article_props);
+      return "Ok";
     }
-    case "deleted": {
-      return articles.filter((a) => a.id !== action.id);
+    case "edit": {
+      const editArticle = async (article) => {
+        try {
+          await axios.post(`${URL}/api/articles/edit/${article._id}`, article);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+
+      editArticle(article_props);
+      return "Ok";
     }
-    default: {
-      throw Error("Unknown action: " + action.type);
+    case "delete": {
+      const deleteArticle = async (articleId) => {
+        try {
+          await axios.delete(`${URL}/api/articles/delete/${articleId}`);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+
+      deleteArticle(article_props);
+      return "Ok";
+    }
+    case "change_status": {
+      const changeStatus = async (article_props) => {
+        try {
+          await axios.post(
+            `${URL}/api/articles/make_public/${article_props.status}/${article_props.articleId}`
+          );
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      changeStatus(article_props);
+      return "Ok";
     }
   }
 };

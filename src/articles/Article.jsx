@@ -1,35 +1,33 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
-import { config } from "../Constants";
 import EditDeleteButtons from "./EditDeleteButtons";
 import LoadingSpinner from "../navigation/LoadingSpinner";
+import { useAPI } from "../context/ApiContext";
 
-const URL = config.url;
-
-function Article({ i18n }) {
+function Article({ changeStatus, i18n, onDeleteArticle }) {
   const params = useParams();
   const [article, setArticle] = useState({});
+  const { articles } = useAPI();
 
   useEffect(() => {
-    async function fetchData() {
-      await axios
-        .get(`${URL}/api/articles/`.concat(params.articleId))
-        .then((response) => {
-          setArticle(response.data);
-        })
-        .catch((err) => console.log(err));
-    }
-    fetchData();
+    articles.map((a) => {
+      if (a._id === params.articleId) {
+        setArticle(a);
+      }
+    });
   }, [params.articleId]);
 
-  return article.image_url ? (
+  return article ? (
     <div className="flex flex-col md:w-[60%] w-[95%] mx-auto ">
       {process.env.NODE_ENV === "development" && (
         <div className="self-end">
-          <EditDeleteButtons article={article} URL={URL} />
+          <EditDeleteButtons
+            changeStatus={changeStatus}
+            onDeleteArticle={onDeleteArticle}
+            article={article}
+          />
         </div>
       )}
       <div className="text-center md:text-[4rem]  font-bold mb-8 underline decoration-purple leading-[1.3] text-3xl">
