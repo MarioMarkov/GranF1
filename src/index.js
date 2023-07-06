@@ -2,11 +2,14 @@ import React from "react";
 import "./index.css";
 import App from "./App";
 import "./i18n/config";
-import { hydrate, render } from "react-dom";
- 
-const rootElement = document.getElementById("root");
-if (rootElement.hasChildNodes()) {
-  hydrate(<App />, rootElement);
+
+import { createRoot, hydrateRoot } from "react-dom/client";
+
+const container = document.getElementById("root");
+const root = createRoot(container);
+
+if (container.hasChildNodes()) {
+  hydrateRoot(container, <App />);
 } else {
-  render(<App />, rootElement);
+  root.render(<App />);
 }

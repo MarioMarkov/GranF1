@@ -12,8 +12,6 @@
     "concurrently": "^7.4.0",
     "firebase": "^9.17.2",
     "firebaseui": "^6.0.2",
-    "flowbite": "^1.6.5",
-    "flowbite-react": "^0.4.3",
     "i18next-browser-languagedetector": "^7.0.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
@@ -28,7 +26,6 @@
     "react-navigation": "^4.4.4",
     "react-router-dom": "^6.4.0",
     "react-scripts": "5.0.1",
-    "react-snap": "^1.23.0",
     "rehype-raw": "^6.1.1",
     "use-state-with-callback": "^3.0.2",
     "uuid": "^9.0.0",
@@ -48,6 +45,9 @@
       "react-app/jest"
     ]
   },
+  "reactSnap": {
+    "inlineCss": true
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -64,6 +64,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
+    "react-snap": "^1.23.0",
     "tailwindcss": "^3.3.1"
   }
 }
