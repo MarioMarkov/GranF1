@@ -13,7 +13,6 @@ export default function EditDeleteButtons({
     if (window.confirm("Are you sure!") === true) {
       onDeleteArticle(articleId);
     }
-
     navigate("/");
   };
 
@@ -21,7 +20,6 @@ export default function EditDeleteButtons({
     if (window.confirm("Are you sure!") === true) {
       changeStatus({articleId, status});
     }
-
     navigate("/");
   };
 

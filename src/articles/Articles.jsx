@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../navigation/LoadingSpinner";
@@ -14,7 +14,7 @@ function Articles({ i18n }) {
         {articles
           .filter(
             (a) =>
-              String(a.race_review) == String(params.raceReviews).toLowerCase()
+              String(a.race_review) === String(params.raceReviews).toLowerCase()
           )
           .map((article) => {
             return (

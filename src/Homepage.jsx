@@ -22,6 +22,8 @@ function Homepage({ i18n }) {
           </div>
 
           <img
+            rel="preload"
+            as="image" 
             className="md:max-w-[35vw] md:h-full object-cover rounded-tl-[10px]"
             src={articles[0].img.src}
             alt=""

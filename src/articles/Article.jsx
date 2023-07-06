@@ -12,12 +12,12 @@ function Article({ changeStatus, i18n, onDeleteArticle }) {
   const { articles } = useAPI();
 
   useEffect(() => {
-    articles.map((a) => {
+    articles.forEach((a) => {
       if (a._id === params.articleId) {
         setArticle(a);
       }
     });
-  }, [params.articleId]);
+  }, [params.articleId, articles]);
 
   return article ? (
     <div className="flex flex-col md:w-[60%] w-[95%] mx-auto ">
