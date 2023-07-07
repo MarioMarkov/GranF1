@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "./navigation/LoadingSpinner";
 
@@ -6,13 +6,6 @@ import { useAPI } from "./context/ApiContext";
 
 function Homepage({ i18n }) {
   const { articles } = useAPI();
-  // const [loading, setLoading] = useState(false);
-
-  // useEffect(() => {
-  //   if (articles.length > 0) {
-  //     setLoading(true);
-  //   }
-  // }, [articles]);
 
   return articles.length > 0 ? (
     <div className="w-4/5 mx-auto px-2.5 leading-[1.4] tracking-[-.05em]	">
@@ -32,7 +25,7 @@ function Homepage({ i18n }) {
             rel="preload"
             as="image"
             className="md:max-w-[35vw] md:h-full object-cover rounded-tl-[10px]"
-            src={articles[0].img.src}
+            src={articles[0].image_url}
             alt=""
           />
         </div>
@@ -49,8 +42,10 @@ function Homepage({ i18n }) {
                 <Link to={`/articles/${article._id}`} key={article._id}>
                   <div>
                     <img
+                      rel="preload"
+                      as="image"
                       className="w-full h-[230px] object-cover rounded-t-lg"
-                      src={article.img.src}
+                      src={article.image_url}
                       alt=""
                     />
                     <div className="p-3">
@@ -76,7 +71,7 @@ function Homepage({ i18n }) {
       </div>
     </div>
   ) : (
-    <LoadingSpinner />
+    <p></p>
   );
 }
 

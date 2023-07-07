@@ -8,6 +8,7 @@ export default function Hamburger({ isOpen, setIsOpen }) {
       <button
         className="flex flex-col h-10 w-10  rounded justify-center items-center group float-right"
         onClick={() => setIsOpen(!isOpen)}
+        aria-label="hamburger"
       >
         <div
           className={`${genericHamburgerLine} ${

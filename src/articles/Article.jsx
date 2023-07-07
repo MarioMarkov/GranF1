@@ -37,6 +37,8 @@ function Article({ changeStatus, i18n, onDeleteArticle }) {
       </div>
       <div className="">
         <img
+          rel="preload"
+          as="image"
           className="object-cover rounded-md mb-6 "
           alt="Race highlight"
           src={article.image_url}

@@ -25,8 +25,10 @@ function Articles({ i18n }) {
                 <Link to={`/articles/${article._id}`} key={article._id}>
                   <div>
                     <img
+                      rel="preload"
+                      as="image"
                       className="w-full h-[220px] object-cover rounded-t-lg"
-                      src={article.img.src}
+                      src={article.image_url}
                       alt=""
                     />
                     <div className="py-3 px-[5px]">

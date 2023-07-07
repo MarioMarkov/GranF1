@@ -69,7 +69,7 @@ function Navbar({ setLang, t, i18n }) {
               {t("gran_f1")}
             </span>
           </Link>
-          {process.env.NODE_ENV === "development" && (
+          {import.meta.env.NODE_ENV === "development" && (
             <div className="flex md:order-2">
               <Link to="/add">
                 <button
@@ -84,13 +84,13 @@ function Navbar({ setLang, t, i18n }) {
 
           <div className="md:order-3 text-3xl flex">
             <div className="flex gap-[10px]">
-              <button>
+              <button aria-label="english">
                 <Gb
                   onClick={() => changeLanguage("en")}
                   className="inline"
                 ></Gb>
               </button>{" "}
-              <button>
+              <button aria-label="bulgarian">
                 <Bg
                   onClick={() => changeLanguage("bg")}
                   className="inline"

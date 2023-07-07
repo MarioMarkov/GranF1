@@ -1,10 +1,11 @@
 import axios from "axios";
-import { config } from "../Constants";
-const URL = config.url;
-
+let URL = "";
+if (import.meta.env.NODE_ENV === "production") {
+  URL = import.meta.env.VITE_API_URL;
+}
 const articlesReducer = (article_state, action) => {
   const article_props = action.payload;
-  
+
   switch (action.type) {
     case "added": {
       const addArticle = async (article) => {
