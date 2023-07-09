@@ -69,7 +69,7 @@ function Navbar({ setLang, t, i18n }) {
               {t("gran_f1")}
             </span>
           </Link>
-          {import.meta.env.NODE_ENV === "development" && (
+          {!import.meta.env.PROD && (
             <div className="flex md:order-2">
               <Link to="/add">
                 <button

@@ -1,6 +1,7 @@
 import axios from "axios";
+
 let URL = "";
-if (import.meta.env.NODE_ENV === "production") {
+if (import.meta.env.PROD) {
   URL = import.meta.env.VITE_API_URL;
 }
 const articlesReducer = (article_state, action) => {

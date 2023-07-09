@@ -1,13 +1,10 @@
 import React, { useContext, useState, useEffect, createContext } from "react";
 import axios from "axios";
 
-let URL = "http://localhost:8080";
-//let URL = "";
-
-if (import.meta.env.NODE_ENV === "production") {
+let URL = "";
+if (import.meta.env.PROD) {
   URL = import.meta.env.VITE_API_URL;
 }
-
 const APIContext = createContext();
 
 export function APIContextProvider({ children }) {
@@ -19,6 +16,7 @@ export function APIContextProvider({ children }) {
       // } catch (e) {
       //   console.log(e)
       // }
+      console.log(URL);
       await axios
         .get(`${URL}/api/articles/all`)
         .then((response) => {
@@ -30,7 +28,7 @@ export function APIContextProvider({ children }) {
           //   return article;
           // });
 
-          if (process.env.NODE_ENV === "production") {
+          if (import.meta.env.PROD) {
             data = data.filter((article) => {
               return article.public === true;
             });

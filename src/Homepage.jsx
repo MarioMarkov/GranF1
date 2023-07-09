@@ -54,10 +54,6 @@ function Homepage({ i18n }) {
                         {i18n.language === "en"
                           ? article.en_title
                           : article.bg_title}
-                        {": "}
-                        {i18n.language === "en"
-                          ? article.en_content.slice(0, 20)
-                          : article.bg_content.slice(0, 20) + "..."}
                       </p>
                     </div>
                   </div>

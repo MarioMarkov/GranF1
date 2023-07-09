@@ -5,6 +5,7 @@ import rehypeRaw from "rehype-raw";
 import EditDeleteButtons from "./EditDeleteButtons";
 import LoadingSpinner from "../navigation/LoadingSpinner";
 import { useAPI } from "../context/ApiContext";
+import remarkGfm from "remark-gfm";
 
 function Article({ changeStatus, i18n, onDeleteArticle }) {
   const params = useParams();
@@ -21,7 +22,7 @@ function Article({ changeStatus, i18n, onDeleteArticle }) {
 
   return article ? (
     <div className="flex flex-col md:w-[60%] w-[95%] mx-auto ">
-      {process.env.NODE_ENV === "development" && (
+      {!import.meta.env.PROD && (
         <div className="self-end">
           <EditDeleteButtons
             changeStatus={changeStatus}
@@ -31,7 +32,7 @@ function Article({ changeStatus, i18n, onDeleteArticle }) {
         </div>
       )}
       <div className="text-center md:text-[4rem]  font-bold mb-8 underline decoration-purple leading-[1.3] text-3xl">
-        <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+        <ReactMarkdown rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]}>
           {i18n.language === "en" ? article.en_title : article.bg_title}
         </ReactMarkdown>
       </div>
@@ -46,7 +47,7 @@ function Article({ changeStatus, i18n, onDeleteArticle }) {
       </div>
 
       <div className=" text-[18px] md:text-[20px] md:my-6 font-medium leading-[1.7]">
-        <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+        <ReactMarkdown rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]}>
           {i18n.language === "en" ? article.en_content : article.bg_content}
         </ReactMarkdown>
       </div>

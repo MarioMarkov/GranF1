@@ -18,7 +18,7 @@ export default function EditDeleteButtons({
 
   const changePublicStatus = async (articleId, status) => {
     if (window.confirm("Are you sure!") === true) {
-      changeStatus({articleId, status});
+      changeStatus({ articleId, status });
     }
     navigate("/");
   };
@@ -56,7 +56,7 @@ export default function EditDeleteButtons({
       </button>
 
       <input
-        className="appearance-none checked:bg-blue-500 "
+        className=" checked:bg-blue-500 "
         type="checkbox"
         defaultChecked={article.public}
       />
